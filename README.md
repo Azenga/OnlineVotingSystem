@@ -8,7 +8,7 @@
 
 > An online voting system for my country
 <p>
-Just another skill oriented project of mine, I want do it to my best
+Just another skill oriented project of mine, I want do it to my best  
 </p>
 <p>You might wanna setup a database correctly, before you commence the following steps. Also don't forget to change your db credentials in the .env file. Happy coding
 </p>
