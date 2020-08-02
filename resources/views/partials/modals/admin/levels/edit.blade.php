@@ -1,7 +1,7 @@
 <div class="modal fade" id="edit-level" tabindex="-1" 
     aria-labelledby="edit-level-label" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="{{ route('admin.levels.update', $level) }}" method="POST">
+        <form action="#">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title font-weight-bold" id="edit-level-label">Edit Level</h5>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary float-right">Update</button>
+                    <button type="button" class="btn btn-primary float-right">Update</button>
                 </div>
             </div>
         </form>

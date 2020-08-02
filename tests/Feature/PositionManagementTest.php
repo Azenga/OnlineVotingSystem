@@ -147,7 +147,7 @@ class PositionManagementTest extends TestCase
      * @test
      * @group position
      */
-    public function one_can_update_a_postion()
+    public function one_can_update_a_position()
     {
         $this->withoutExceptionHandling();
 
