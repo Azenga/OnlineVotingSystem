@@ -18,3 +18,10 @@ Route::view('/', 'welcome');
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function(){
+
+    Route::resources([
+        'levels' => 'LevelsController',
+    ]);
+});
