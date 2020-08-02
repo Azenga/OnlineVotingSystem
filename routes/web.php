@@ -23,5 +23,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
 
     Route::resources([
         'levels' => 'LevelsController',
+        'positions' => 'PositionsController',
     ]);
 });

@@ -1,24 +1,22 @@
 @extends('layouts.app')
 
-
 @section('content')
 <div class="container">
 
     <div class="d-flex justify-content-between align-items-center">
-        <h4 class="font-weight-bold">Levels</h4>
-        <a href="{{ route('admin.levels.create') }}" class="btn btn-sm btn-primary">Add Level</a>
+        <h4 class="font-weight-bold">Positions</h4>
+        <a href="{{ route('admin.positions.create') }}" class="btn btn-sm btn-primary">Add Position</a>
     </div>
 
     <div class="py-3">
 
-        @if ($levels->count())
+        @if ($positions->count())
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead class="table-light">
                     <tr>
                         <th>##</th>
                         <th>Title</th>
-                        <th>Positions</th>
                         <th>Updated</th>
                         <th>Created</th>
                         <th>Actions</th>
@@ -26,19 +24,16 @@
                 </thead>
     
                 <tbody>
-                    @foreach ($levels as $level)
+                    @foreach ($positions as $position)
                         <tr>
-                            <td>{{ $level->id }}</td>
-                            <td>{{ $level->title }}</td>
-                            <td>{{ $level->positions->count() }}</td>
-                            <td>{{ $level->updated_at }}</td>   
-                            <td>{{ $level->created_at }}</td>
+                            <td>{{ $position->id }}</td>
+                            <td>{{ $position->title }} <small class="text-muted">({{ $position->level->title }})</small></td>
+                            <td>{{ $position->updated_at }}</td>   
+                            <td>{{ $position->created_at }}</td>
                             <td class="d-flex">                                
-                                <button type="button" 
-                                    class="btn btn-sm btn-info btn-edit-level" 
-                                    data-id="{{ $level->id }}" data-toggle="modal" data-target="#edit-level">
-                                    <i class="fa fa-edit"></i>
-                                </button>                                
+                                <a href="{{ $position->path() }}" class="btn btn-sm btn-info btn-edit-level">
+                                    <i class="fa fa-eye"></i>
+                                </a>                                
                                 <button type="button" class="btn btn-sm btn-danger ml-3" data-toggle="modal" data-target="#delete-level">
                                     <i class="fa fa-trash-alt"></i>
                                 </button>
@@ -47,15 +42,12 @@
                     @endforeach
                 </tbody>
             </table>
-
-            @include('partials.modals.admin.levels.edit')
-            @include('partials.modals.admin.levels.delete')
         </div>
         @else
         <div class="d-flex justify-content-center align-items-center">
             <i class="fa fa-info-circle fa-2x text-info"></i>
 
-            <span class="font-weight-bold ml-3">No levels added yet</span>
+            <span class="font-weight-bold ml-3">No positions added yet</span>
         </div>
         @endif
     </div>

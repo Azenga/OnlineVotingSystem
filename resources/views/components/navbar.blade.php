@@ -15,6 +15,7 @@
                     <!-- Some are here just for testing -->
 
                     <li class="nav-item"><a href="{{ route('admin.levels.index') }}" class="nav-link">Levels</a></li>
+                    <li class="nav-item"><a href="{{ route('admin.positions.index') }}" class="nav-link">Positions</a></li>
 
                 </ul>
 

@@ -7,6 +7,11 @@
 </p>
 
 > An online voting system for my country
+<p>
+Just another skill oriented project of mine, I want do it to my best
+</p>
+<p>You might wanna setup a database correctly, before you commence the following steps. Also don't forget to change your db credentials in the .env file. Happy coding
+</p>
 
 ## Install
 
@@ -18,8 +23,20 @@ cp .env.example .env
 
 php artisan key:generate
 
+php artisan migrate:fresh --seed
+
+php artisan serve
+
 ```
 
+### Dependencies
+
+ - Composer
+    * laravel/ui
+ - NPM
+    * Bootstrap5.0.0-alpha1 !!
+    * Vue Js
+ 
 ## Author
 
 👤 **Azenga Kevin**
@@ -31,6 +48,6 @@ php artisan key:generate
 
 ## Show your support
 
-Give a ⭐️ if this project helped you!
+Give a ⭐️ if this project helped you learn something!
 
 ***

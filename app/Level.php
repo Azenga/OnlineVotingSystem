@@ -12,4 +12,9 @@ class Level extends Model
     {
         return '/admin/levels/' . $this->id;
     }
+
+    public function positions()
+    {
+        return $this->hasMany(Position::class);
+    }
 }

@@ -16,7 +16,7 @@ class LevelsController extends Controller
      */
     public function index()
     {
-        return view('admin.levels.index', ['levels' => Level::all()]);
+        return view('admin.levels.index', ['levels' => Level::with('positions')->get()]);
     }
 
     /**

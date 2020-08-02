@@ -15,10 +15,10 @@
                 <h4 class="font-weight-bold">Add Level</h4>
                 @csrf
                 <div class="mt-3">
-                    <label for="role-title" class="form-label">Title <span class="text-danger">*</span></label>
+                    <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
                     <input type="text" name="title" 
                         class="form-control @error('title')is-invalid @enderror" 
-                        id="role-title" placeholder="County">
+                        id="title" placeholder="County">
                     @error('title')
                         <span class="text-danger d-block mt-1">{{ $message }}</span>
                     @enderror
