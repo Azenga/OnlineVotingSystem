@@ -81,9 +81,7 @@ class LevelManagmentTest extends TestCase
      * @group level
      */
     public function a_level_can_be_deleted()
-    {
-        $this->withoutExceptionHandling();
-        
+    {        
         $this->post('/admin/levels', [
             'title' => 'Country'
         ]);
@@ -96,4 +94,20 @@ class LevelManagmentTest extends TestCase
 
         $this->assertCount(0, Level::all()); 
     }
+
+    /** 
+     * @test
+     * 
+     * @group level
+     */
+    public function create_level_page_can_be_visited()
+    {
+        $this->withoutExceptionHandling();
+
+        $response = $this->get('/admin/levels/create');
+
+        $response->assertOk();
+    }
+
+
 }

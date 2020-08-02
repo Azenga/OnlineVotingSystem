@@ -26,7 +26,7 @@ class LevelsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.levels.create');
     }
 
     /**
