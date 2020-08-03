@@ -38,7 +38,7 @@ class UsersManagementTest extends TestCase
         $this->get('/admin/users/create')
              ->assertOk()
              ->assertViewIs('admin.users.create')
-             ->assertViewHas('roles');
+             ->assertViewHas(['roles', 'wards']);
     }
 
     /**
@@ -82,7 +82,7 @@ class UsersManagementTest extends TestCase
     {
         $data = factory(User::class)->make()->toArray();
 
-        foreach (['name', 'phone_number', 'national_id_number', 'role_id', 'email'] as $value) {
+        foreach (['name', 'phone_number', 'national_id_number', 'role_id', 'role_id', 'email'] as $value) {
             $this->post('/admin/users', array_merge($data, [$value => '']))
                  ->assertSessionHasErrors($value);
         }
@@ -103,7 +103,7 @@ class UsersManagementTest extends TestCase
         $this->get('/admin/users/' . $role->id . '/edit')
              ->assertOk()
              ->assertViewIs('admin.users.edit')
-             ->assertViewHasAll(['user', 'roles']);
+             ->assertViewHasAll(['user', 'roles', 'wards']);
     }
 
     /**

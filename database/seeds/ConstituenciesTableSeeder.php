@@ -12,6 +12,14 @@ class ConstituenciesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Constituency::class, 5)->create();
+        for ($count=0; $count < 100 ; $count++) { 
+
+            srand(time());
+
+            factory(Constituency::class)->create([
+                'county_id' => rand(1, 47),
+            ]);
+        }
+
     }
 }

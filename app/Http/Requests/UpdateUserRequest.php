@@ -28,6 +28,7 @@ class UpdateUserRequest extends FormRequest
             'email' => ['required', 'email'],
             'phone_number' => ['required'],
             'role_id' => ['required', 'numeric'],
+            'ward_id' => ['required', 'numeric'],
             'national_id_number' => ['required', 'numeric'],
             'isalive' => [],
             'isactive' => [],

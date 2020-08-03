@@ -4,6 +4,7 @@
 
 use App\Role;
 use App\User;
+use App\Ward;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -22,6 +23,7 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'role_id' => factory(Role::class),
+        'ward_id' => factory(Ward::class),
         'national_id_number' => $faker->numberBetween(20000000, 40000000),
         'email' => $faker->unique()->safeEmail,
         'phone_number' => $faker->e164PhoneNumber,

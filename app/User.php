@@ -19,7 +19,7 @@ class User extends Authenticatable
         'name', 'email', 'password',
         'phone_number', 'national_id_number',
         'isalive', 'isactive', 'hasvoted',
-        'role_id', 
+        'role_id', 'ward_id'
     ];
 
     /**
@@ -40,11 +40,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * 
+     * Relationships
+     * 
+     */
+
     public function role()
     {
         return $this->belongsTo(Role::class);
     }
 
+    public function ward()
+    {
+        return $this->belongsTo(Ward::class);
+    }
+
+
+    /**
+     * Utility methods and helpers
+     */
     public function path()
     {
         return '/admin/users/' . $this->id;

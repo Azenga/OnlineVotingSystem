@@ -29,6 +29,7 @@ class StoreUserRequest extends FormRequest
             'email' => ['required', 'email', 'unique:users'],
             'phone_number' => ['required', 'unique:users'],
             'role_id' => ['required', 'numeric'],
+            'ward_id' => ['required', 'numeric'],
             'national_id_number' => ['required', 'numeric'],
         ];
     }

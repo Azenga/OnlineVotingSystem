@@ -46,6 +46,15 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-6">
+                        <span class="font-weight-bold">Ward</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="text-primary">{{ $user->ward->name }}</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
                         <span class="font-weight-bold">National ID Number</span>
                     </div>
                     <div class="col-md-6">

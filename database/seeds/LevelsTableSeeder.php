@@ -11,6 +11,9 @@ class LevelsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Level::class, 5)->create();
+
+        foreach (['Country', 'County', 'Constituency', 'Ward'] as $value) {
+            factory(\App\Level::class)->create(['title' => $value]);
+        }
     }
 }

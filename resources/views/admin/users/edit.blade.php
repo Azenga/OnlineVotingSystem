@@ -68,7 +68,21 @@
                     @error('role_id')
                         <span class="text-danger d-block mt-1">{{ $message }}</span>
                     @enderror
-                </div>    
+                </div>
+
+                <div class="mt-3">
+                    <label for="ward-id" class="form-label">Ward<span class="text-danger">*</span></label>
+                    <select class="form-select @error('ward_id') is-invalid @enderror" 
+                        name="ward_id" id="ward-id" aria-label="Select a position">
+                        <option selected disabled>Select User Ward (Location)</option>
+                        @foreach ($wards as $ward)
+                            <option value="{{ $ward->id }}" {{ ((old('ward_id') ?? $user->ward_id) && ($ward->id == (old('ward_id') ?? $user->ward_id))) ? 'selected' : '' }}>{{ $ward->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('ward_id')
+                        <span class="text-danger d-block mt-1">{{ $message }}</span>
+                    @enderror
+                </div>   
                 
                 <div class="form-check mt-3">
                     <input class="form-check-input" type="checkbox" id="active-checkbox"

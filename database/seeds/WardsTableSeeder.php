@@ -12,6 +12,14 @@ class WardsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Ward::class, 5)->create();
+
+        for ($count=0; $count < 150 ; $count++) { 
+
+            srand(time());
+
+            factory(Ward::class)->create([
+                'constituency_id' => rand(1, 99),
+            ]);
+        }
     }
 }

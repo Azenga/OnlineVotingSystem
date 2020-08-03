@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Role;
 use App\User;
+use App\Ward;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -33,8 +34,9 @@ class UsersController extends Controller
     public function create()
     {
         $roles = Role::all();
+        $wards = Ward::all();
 
-        return view('admin.users.create', compact('roles'));
+        return view('admin.users.create', compact('roles', 'wards'));
     }
 
     /**
@@ -75,8 +77,9 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
+        $wards = Ward::all();
 
-        return view('admin.users.edit', compact('user', 'roles'));
+        return view('admin.users.edit', compact('user', 'roles', 'wards'));
     }
 
     /**
