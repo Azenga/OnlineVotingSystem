@@ -1,9 +1,9 @@
 <?php
 
-use App\Position;
+use App\Ward;
 use Illuminate\Database\Seeder;
 
-class PositionsTableSeeder extends Seeder
+class WardsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class PositionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Position::class, 5)->create();
+        factory(Ward::class, 5)->create();
     }
 }

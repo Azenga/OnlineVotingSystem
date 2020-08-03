@@ -12,6 +12,6 @@ class CountiesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(County::class, 6)->create();
+        factory(County::class, 5)->create();
     }
 }

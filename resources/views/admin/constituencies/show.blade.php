@@ -16,6 +16,19 @@
                 <small class="text-muted">({{ $constituency->county->name }})</small>
             </h4>
 
+            <div class="mt-3">
+                <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="font-weight-bold">County</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="text-primary">{{ $constituency->county->name }}</span>
+                        </div>
+                    </div>
+                <hr>
+            </div>
+
             <div class="pt-3">
                 <h5 class="font-weight-bold text-secondary">Description</h5>
                 <p>

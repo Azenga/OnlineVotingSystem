@@ -12,5 +12,10 @@ class Ward extends Model
     {
         return '/admin/wards/' . $this->id;
     }
+
+    public function constituency()
+    {
+        return $this->belongsTo(Constituency::class);
+    }
     
 }

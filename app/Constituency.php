@@ -13,6 +13,11 @@ class Constituency extends Model
     {
         return $this->belongsTo(County::class);
     }
+
+    public function wards()
+    {
+        return $this->hasMany(Ward::class);
+    }
     
     public function path()
     {

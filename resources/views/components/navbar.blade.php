@@ -13,11 +13,11 @@
                 <ul class="navbar-nav mr-auto">
 
                     <!-- Some are here just for testing -->
-
                     <li class="nav-item"><a href="{{ route('admin.levels.index') }}" class="nav-link">Levels</a></li>
                     <li class="nav-item"><a href="{{ route('admin.positions.index') }}" class="nav-link">Positions</a></li>
                     <li class="nav-item"><a href="{{ route('admin.counties.index') }}" class="nav-link">Counties</a></li>
                     <li class="nav-item"><a href="{{ route('admin.constituencies.index') }}" class="nav-link">Constituencies</a></li>
+                    <li class="nav-item"><a href="{{ route('admin.wards.index') }}" class="nav-link">Wards</a></li>
 
                 </ul>
 

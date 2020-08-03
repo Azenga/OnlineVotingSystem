@@ -18,7 +18,7 @@
                     <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
                     <input type="text" name="name" 
                         class="form-control @error('name')is-invalid @enderror" 
-                        id="name" placeholder="County" value="{{ old('name') }}">
+                        id="name" placeholder="Name..." value="{{ old('name') }}">
                     @error('name')
                         <span class="text-danger d-block mt-1">{{ $message }}</span>
                     @enderror
