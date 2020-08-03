@@ -115,7 +115,7 @@ class ConstituencyManagementTest extends TestCase
 
         $this->assertEquals($constituency->name, Constituency::first()->name);
         $this->assertEquals($constituency->county_id, Constituency::first()->county_id);
-        $this->assertEquals($constituency->descrption, Constituency::first()->descrption);
+        $this->assertEquals($constituency->description, Constituency::first()->description);
     }
 
     /**
@@ -133,4 +133,5 @@ class ConstituencyManagementTest extends TestCase
 
         $this->assertCount(0, Constituency::all());
     }
+    
 }
