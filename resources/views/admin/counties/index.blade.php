@@ -32,8 +32,8 @@
                             <td>{{ $county->name }}</td>
                             <td>{{ $county->constituencies->count() }}</td>
                             <td>{{ $county->region }}</td>
-                            <td>{{ $county->updated_at }}</td>   
-                            <td>{{ $county->created_at }}</td>
+                            <td>{{ $county->updated_at->format('d/m/Y') }}</td>   
+                            <td>{{ $county->created_at->format('d/m/Y') }}</td>
                             <td class="d-flex">                                
                                 <a href="{{ $county->path() }}" class="btn btn-sm btn-info btn-edit-level">
                                     <i class="fa fa-eye"></i>

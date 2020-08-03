@@ -28,8 +28,8 @@
                         <tr>
                             <td>{{ $position->id }}</td>
                             <td>{{ $position->title }} <small class="text-muted">({{ $position->level->title }})</small></td>
-                            <td>{{ $position->updated_at }}</td>   
-                            <td>{{ $position->created_at }}</td>
+                            <td>{{ $position->updated_at->format('d/m/Y') }}</td>   
+                            <td>{{ $position->created_at->format('d/m/Y') }}</td>
                             <td class="d-flex">                                
                                 <a href="{{ $position->path() }}" class="btn btn-sm btn-info btn-edit-level">
                                     <i class="fa fa-eye"></i>

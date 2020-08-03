@@ -31,8 +31,8 @@
                             <td>{{ $level->id }}</td>
                             <td>{{ $level->title }}</td>
                             <td>{{ $level->positions->count() }}</td>
-                            <td>{{ $level->updated_at }}</td>   
-                            <td>{{ $level->created_at }}</td>
+                            <td>{{ $level->updated_at->format('d/m/Y') }}</td>   
+                            <td>{{ $level->created_at->format('d/m/Y') }}</td>
                             <td class="d-flex">                                
                                 <button type="button" 
                                     class="btn btn-sm btn-info btn-edit-level" 

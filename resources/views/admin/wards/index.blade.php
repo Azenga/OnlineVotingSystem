@@ -32,8 +32,8 @@
                             <td>{{ $ward->name }}</td>
                             <td>{{ $ward->constituency->name }}</td>
                             <td>{{ $ward->constituency->county->name }}</td>
-                            <td>{{ $ward->updated_at }}</td>   
-                            <td>{{ $ward->created_at }}</td>
+                            <td>{{ $ward->updated_at->format('d/m/Y') }}</td>   
+                            <td>{{ $ward->created_at->format('d/m/Y') }}</td>
                             <td class="d-flex">                                
                                 <a href="{{ $ward->path() }}" class="btn btn-sm btn-info btn-edit-level">
                                     <i class="fa fa-eye"></i>

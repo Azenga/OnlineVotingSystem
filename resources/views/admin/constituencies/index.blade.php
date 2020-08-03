@@ -30,8 +30,8 @@
                             <td>{{ $constituency->id }}</td>
                             <td>{{ $constituency->name }}</td>
                             <td>{{ $constituency->county->name }}</td>
-                            <td>{{ $constituency->updated_at }}</td>   
-                            <td>{{ $constituency->created_at }}</td>
+                            <td>{{ $constituency->updated_at->format('d/m/Y') }}</td>   
+                            <td>{{ $constituency->created_at->format('d/m/Y') }}</td>
                             <td class="d-flex">                                
                                 <a href="{{ $constituency->path() }}" class="btn btn-sm btn-info btn-edit-level">
                                     <i class="fa fa-eye"></i>

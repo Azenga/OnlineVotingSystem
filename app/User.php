@@ -17,6 +17,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
+        'phone_number', 'national_id_number',
+        'isalive', 'isactive', 'hasvoted',
+        'role_id', 
     ];
 
     /**
@@ -36,4 +39,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function path()
+    {
+        return '/admin/users/' . $this->id;
+    }
 }
