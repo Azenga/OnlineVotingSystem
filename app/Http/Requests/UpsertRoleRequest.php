@@ -24,7 +24,7 @@ class UpsertRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'string', 'unique:roles'],
+            'title' => ['required', 'string'],
             'description' => [],
         ];
     }

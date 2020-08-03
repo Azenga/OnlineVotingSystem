@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             CountiesTableSeeder::class,
             ConstituenciesTableSeeder::class,
             WardsTableSeeder::class,
+            RolesTableSeeder::class,
         ]);
     }
 }
