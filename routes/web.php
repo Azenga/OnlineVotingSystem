@@ -25,5 +25,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
         'levels' => 'LevelsController',
         'positions' => 'PositionsController',
         'counties' => 'CountiesController',
+        'constituencies' => 'ConstituenciesController',
     ]);
 });

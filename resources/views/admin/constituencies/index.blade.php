@@ -4,21 +4,20 @@
 <div class="container">
 
     <div class="d-flex justify-content-between align-items-center">
-        <h4 class="font-weight-bold">Counties</h4>
-        <a href="{{ route('admin.counties.create') }}" class="btn btn-sm btn-primary">Add County</a>
+        <h4 class="font-weight-bold">Constituencies</h4>
+        <a href="{{ route('admin.constituencies.create') }}" class="btn btn-sm btn-primary">Add Constituency</a>
     </div>
 
     <div class="py-3">
 
-        @if ($counties->count())
+        @if ($constituencies->count())
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead class="table-light">
                     <tr>
                         <th>##</th>
                         <th>Name</th>
-                        <th>Sub Counties</th>
-                        <th>Region</th>
+                        <th>County</th>
                         <th>Updated</th>
                         <th>Created</th>
                         <th>Actions</th>
@@ -26,20 +25,19 @@
                 </thead>
     
                 <tbody>
-                    @foreach ($counties as $county)
+                    @foreach ($constituencies as $constituency)
                         <tr>
-                            <td>{{ $county->id }}</td>
-                            <td>{{ $county->name }}</td>
-                            <td>{{ $county->constituencies->count() }}</td>
-                            <td>{{ $county->region }}</td>
-                            <td>{{ $county->updated_at }}</td>   
-                            <td>{{ $county->created_at }}</td>
+                            <td>{{ $constituency->id }}</td>
+                            <td>{{ $constituency->name }}</td>
+                            <td>{{ $constituency->county->name }}</td>
+                            <td>{{ $constituency->updated_at }}</td>   
+                            <td>{{ $constituency->created_at }}</td>
                             <td class="d-flex">                                
-                                <a href="{{ $county->path() }}" class="btn btn-sm btn-info btn-edit-level">
+                                <a href="{{ $constituency->path() }}" class="btn btn-sm btn-info btn-edit-level">
                                     <i class="fa fa-eye"></i>
-                                </a>     
+                                </a>  
                                 
-                                <form action="{{ route('admin.counties.destroy', $county) }}" method="post">
+                                <form action="{{ route('admin.constituencies.destroy', $constituency) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger ml-3">
@@ -56,7 +54,7 @@
         <div class="d-flex justify-content-center align-items-center">
             <i class="fa fa-info-circle fa-2x text-info"></i>
 
-            <span class="font-weight-bold ml-3">No counties added yet</span>
+            <span class="font-weight-bold ml-3">No constituencies added yet</span>
         </div>
         @endif
     </div>
@@ -68,7 +66,7 @@
     
 <script>
     
-    console.log('Hello, you are in counties index')
+    console.log('Hello, you are in level index')
     
 </script>
 @endsection

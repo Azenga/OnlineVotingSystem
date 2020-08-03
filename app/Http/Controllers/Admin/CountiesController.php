@@ -11,7 +11,7 @@ class CountiesController extends Controller
 {
     public function index()
     {
-        $counties = County::all();
+        $counties = County::with('constituencies')->get();
         
         return view('admin.counties.index', compact('counties'));
     }
