@@ -12,6 +12,11 @@ class County extends Model
      * Relationships
      */
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
     public function constituencies()
     {
         return $this->hasMany(Constituency::class);

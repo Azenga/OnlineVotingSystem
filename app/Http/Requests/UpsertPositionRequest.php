@@ -24,7 +24,7 @@ class UpsertPositionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'string', 'unique:positions'],
+            'title' => ['required', 'string'],
             'level_id' => ['required','numeric'],
             'description' => [],
         ];

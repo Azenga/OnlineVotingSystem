@@ -18,6 +18,7 @@
                         <th>##</th>
                         <th>Name</th>
                         <th>County</th>
+                        <th>Wards</th>
                         <th>Updated</th>
                         <th>Created</th>
                         <th>Actions</th>
@@ -30,6 +31,7 @@
                             <td>{{ $constituency->id }}</td>
                             <td>{{ $constituency->name }}</td>
                             <td>{{ $constituency->county->name }}</td>
+                            <td>{{ $constituency->wards->count() }}</td>
                             <td>{{ $constituency->updated_at->format('d/m/Y') }}</td>   
                             <td>{{ $constituency->created_at->format('d/m/Y') }}</td>
                             <td class="d-flex">                                

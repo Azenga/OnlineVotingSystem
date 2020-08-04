@@ -13,7 +13,7 @@ class WardsController extends Controller
     
     public function index()
     {
-        $wards = Ward::all();
+        $wards = Ward::with(['constituency.county', 'users'])->get();
         
         return view('admin.wards.index', compact('wards'));
     }

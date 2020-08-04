@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\County;
+use App\Country;
 use Faker\Generator as Faker;
 
 $factory->define(County::class, function (Faker $faker) {
@@ -69,6 +70,7 @@ $factory->define(County::class, function (Faker $faker) {
 
 
     return [
+        'country_id' => Country::firstOrCreate(['name' => 'Kenya'])->id,
         'name' => $faker->randomElement($counties),
         'region' => $faker->randomElement($regions),
     ];

@@ -15,10 +15,12 @@ class DatabaseSeeder extends Seeder
             RolesTableSeeder::class,
             LevelsTableSeeder::class,
             PositionsTableSeeder::class,
+            CountriesTableSeeder::class,
             CountiesTableSeeder::class,
             ConstituenciesTableSeeder::class,
             WardsTableSeeder::class,
             UsersTableSeeder::class, 
+
         ]);
     }
 }

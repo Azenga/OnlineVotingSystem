@@ -23,11 +23,9 @@ class PositionsTableSeeder extends Seeder
 
         foreach ($positions as $value) {
 
-            srand(time());
-            
             factory(Position::class)->create([
                 'title' => $value,
-                'level_id' => rand(1, 5),
+                'level_id' => rand(1, 4),
             ]);
         }
     }

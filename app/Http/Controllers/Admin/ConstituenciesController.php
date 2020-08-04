@@ -12,7 +12,7 @@ class ConstituenciesController extends Controller
 {
     public function index()
     {
-        $constituencies = Constituency::with('county')->get();
+        $constituencies = Constituency::with(['county', 'wards'])->get();
 
         return view('admin.constituencies.index', compact('constituencies'));
     }

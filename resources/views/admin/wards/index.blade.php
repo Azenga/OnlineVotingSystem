@@ -17,6 +17,7 @@
                     <tr>
                         <th>##</th>
                         <th>Name</th>
+                        <th>Voters</th>
                         <th>Consitituency</th>
                         <th>County</th>
                         <th>Updated</th>
@@ -30,6 +31,7 @@
                         <tr>
                             <td>{{ $ward->id }}</td>
                             <td>{{ $ward->name }}</td>
+                            <td>{{ $ward->users->count() }}</td>
                             <td>{{ $ward->constituency->name }}</td>
                             <td>{{ $ward->constituency->county->name }}</td>
                             <td>{{ $ward->updated_at->format('d/m/Y') }}</td>   
