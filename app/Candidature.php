@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Candidature extends Model
 {
+    protected $fillable = ['user_id', 'position_id'];
     
     public function position()
     {

@@ -12,7 +12,13 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach (['super-admin', 'admin', 'officer', 'candidate', 'voter'] as $value) {
+        foreach ([
+            'voter',
+            'candidate', 
+            'officer', 
+            'admin',
+            'super-admin', 
+        ] as $value) {
             factory(Role::class)->create(['title' => $value]);
         }
     }

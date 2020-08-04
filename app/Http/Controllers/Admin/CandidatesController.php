@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Role;
 use App\User;
+use App\Candidature;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreCandidateRequest;
 
 class CandidatesController extends Controller
 {
@@ -17,7 +20,7 @@ class CandidatesController extends Controller
     public function index()
     {
         //Get candidates
-        $role = Role::findOrFail(4);
+        $role = Role::findOrFail(2);
 
         $users = User::with(['candidature'])->role($role)->get();
 
@@ -37,12 +40,27 @@ class CandidatesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\StoreCandidateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCandidateRequest $request)
     {
-        //
+        $user = User::create(
+            array_merge(
+                $request->validated(),
+                [
+                    'role_id' => 2,
+                    'password' => Hash::make('password'),
+                ]
+            )
+        );
+
+        $candidature = Candidature::create([
+            'user_id' => $user->id,
+            'position_id' => $request->validated()['position_id']
+        ]);
+        
+        return redirect()->route('admin.candidates.index');
     }
 
     /**

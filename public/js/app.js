@@ -39164,7 +39164,7 @@ var render = function() {
           {
             staticClass: "form-select",
             attrs: {
-              name: "ward_id",
+              name: "position_id",
               id: "ward-id",
               "aria-label": "Select a position"
             },
@@ -39201,7 +39201,7 @@ var render = function() {
           {
             staticClass: "form-select",
             attrs: {
-              name: "ward_id",
+              name: "location_id",
               id: "ward-id",
               "aria-label": "Select a position"
             }

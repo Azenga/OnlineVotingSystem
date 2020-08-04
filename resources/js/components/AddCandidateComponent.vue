@@ -46,7 +46,7 @@
 
             <div class="mt-3">
                 <label for="ward-id" class="form-label">Position<span class="text-danger">*</span></label>
-                <select class="form-select" name="ward_id" @change="updatePosition" 
+                <select class="form-select" name="position_id" @change="updatePosition" 
                         id="ward-id" aria-label="Select a position">
                     <option selected disabled>Select Position</option>
 
@@ -58,7 +58,7 @@
 
             <div class="mt-3">
                 <label for="ward-id" class="form-label">Location<span class="text-danger">*</span></label>
-                <select class="form-select" name="ward_id" 
+                <select class="form-select" name="location_id" 
                         id="ward-id" aria-label="Select a position">
                     <option selected disabled>Select Location</option>
                     <optgroup v-if="position == 1">

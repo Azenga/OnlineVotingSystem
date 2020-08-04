@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
 
         for ($i=0; $i < 200; $i++) { 
             factory(User::class)->create([
-                'role_id' => 5,
+                'role_id' => 1,
                 'ward_id' => rand(1, 150),
             ]);
         }
@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
         factory(User::class)->create([
             'name' => 'Azenga Kevin',
             'email' => 'azenga.kevin7@gmail.com',
-            'role_id' => 1,
+            'role_id' => 5,
             'ward_id' => rand(1, 150),
         ]);
     }
