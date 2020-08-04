@@ -32,8 +32,8 @@
                 <select class="form-select" name="ward_id" 
                         id="ward-id" aria-label="Select a position">
                     <option selected disabled>Select Candidate Ward (Location)</option>
-                    <option v-for="(ward, index) in wards" :value=index :key=index>
-                        {{ ward }}
+                    <option v-for="(ward, index) in wards" :value=ward.id :key=index>
+                        {{ ward.name }}
                     </option>
                 </select>
             </div>   
@@ -49,29 +49,35 @@
                 <select class="form-select" name="ward_id" @change="updatePosition" 
                         id="ward-id" aria-label="Select a position">
                     <option selected disabled>Select Position</option>
-                    <option v-for="(position, index) in positions" :value=index :key=index>
-                        {{ position }}
+
+                    <option v-for="(position, index) in positions" :value=position.id :key=index>
+                        {{ position.title }}
                     </option>
                 </select>
             </div>
 
             <div class="mt-3">
-                <label for="ward-id" class="form-label">Location(Ward)<span class="text-danger">*</span></label>
+                <label for="ward-id" class="form-label">Location<span class="text-danger">*</span></label>
                 <select class="form-select" name="ward_id" 
                         id="ward-id" aria-label="Select a position">
                     <option selected disabled>Select Location</option>
-                    <option v-if="selectPosition == 5" v-for="(ward, index) in wards" :value=index :key=index>
-                        {{ ward }}
-                    </option>
-                    <option v-if="selectPosition == 0" v-for="(country, index) in countries" :value=index :key=index>
-                        {{ country }}
-                    </option>
-                    <option v-if="selectPosition == 4" v-for="(constituency, index) in constituencies" :value=index :key=index>
-                        {{ constituency }}
-                    </option>
-                    <option v-if="[1, 2, 3].includes(selectPosition)" v-for="(county, index) in counties" :value=index :key=index>
-                        {{ county }}
-                    </option>
+                    <optgroup v-if="position == 1">
+                        <option v-for="(location, index) in locations" :value=location.id :key=index>
+                            {{ location.name }}
+                        </option>
+                    </optgroup>
+                    <optgroup v-if="position == 2 || position == 3 || position == 4">
+                        <option v-for="(location, index) in locations[country].counties" 
+                        :value=location.id :key=index>{{ location.name }}</option>
+                    </optgroup>
+                    <optgroup v-if="position == 5">
+                        <option v-for="(location, index) in locations[country].counties[county].constituencies" 
+                        :value=location.id :key=index>{{ location.name }}</option>
+                    </optgroup>
+                    <optgroup v-if="position == 6">
+                        <option v-for="(location, index) in locations[country].counties[county].constituencies[constituency].wards" 
+                        :value=location.id :key=index>{{ location.name }}</option>
+                    </optgroup>
                 </select>
             </div>
 
@@ -80,26 +86,30 @@
 </template>
 
 <script>
+    import { mapState } from "vuex";
+
     export default {
         'name': 'add-candidate',
 
         data(){
 
             return {
-                positions: [
-                    'President', 
-                    'Governor', 'Senetor', 
-                    'Women Representative', 
-                    'Member Of Parliament', 
-                    'Member of County Assembly'
-                ],
-                countries: ['Kenya'],
-                counties: ['Nairobi', 'Mombasa', 'Kisumu', 'Vihiga', 'Kakamega'],
-                constituencies: ['Hamisi', 'Emuhaya', 'Maragoli'],
-                wards: ['Gisambai', 'Jepkoyayi'],
-                selectPosition: '',
-                selectLocation: '',
+                position: 0,
+                country: 0,
+                county: 0,
+                constituency: 0,
+                ward: 0,
             }
+        },
+
+        computed: {
+            ...mapState(['locations', 'wards', 'positions'])
+        },
+
+        beforeMount(){
+            this.$store.dispatch('getLocations'),
+            this.$store.dispatch('getWards'),
+            this.$store.dispatch('getPositions')
         },
 
         mounted() {
@@ -108,7 +118,7 @@
 
         methods: {
             updatePosition(e){
-                this.selectPosition = e.target.value
+                this.position = e.target.value
                 console.log(e.target.value)
             }
         }

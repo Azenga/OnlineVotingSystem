@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CountryResource extends JsonResource
+class ConstituencyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +16,7 @@ class CountryResource extends JsonResource
     {
         return array_merge(
             parent::toArray($request),
-            ['counties' => CountyResource::collection($this->counties)] 
+            ['wards' => WardResource::collection($this->wards)],
         );
     }
 }

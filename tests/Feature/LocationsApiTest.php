@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\County;
 use App\Country;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -20,7 +21,48 @@ class LocationsApiTest extends TestCase
         
         factory(Country::class)->create();
         
-        $this->getJson('/api/locations/country')
+        $this->getJson('/api/locations')
              ->assertOk();
     }
+
+    /**
+     * @test
+     * @group api
+     */
+    public function one_can_get_all_the_counties()
+    {
+        $this->withoutExceptionHandling();
+        
+        factory(Country::class)->create();
+
+        factory(County::class)->create();
+        factory(County::class)->create();
+
+        $this->getJson('/api/locations/counties')
+             ->assertOk();
+    }
+
+    /**
+     * @test
+     * @group
+     */
+    public function one_can_get_all_the_constituencies()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->getJson('/api/locations/constituencies')
+             ->assertOk();
+    }
+
+    /**
+     * @test
+     * @group api
+     */
+    public function one_can_get_all_the_wards()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->getJson('/api/locations/wards')
+             ->assertOk();
+    }    
 }
