@@ -18,7 +18,7 @@
                     <li class="nav-item"><a href="{{ route('admin.counties.index') }}" class="nav-link">Counties</a></li>
                     <li class="nav-item"><a href="{{ route('admin.constituencies.index') }}" class="nav-link">Constituencies</a></li>
                     <li class="nav-item"><a href="{{ route('admin.wards.index') }}" class="nav-link">Wards</a></li>
-                    <li class="nav-item ml-2"><a href="{{ route('admin.roles.index') }}" class="nav-link">Roles</a></li>
+                    <li class="nav-item"><a href="{{ route('admin.roles.index') }}" class="nav-link">Roles</a></li>
                     <li class="nav-item"><a href="{{ route('admin.users.index') }}" class="nav-link">Users</a></li>
                     <li class="nav-item"><a href="{{ route('admin.candidates.index') }}" class="nav-link">Candidates</a></li>
                 </ul>
