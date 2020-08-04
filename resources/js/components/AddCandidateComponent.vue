@@ -29,7 +29,7 @@
 
             <div class="mt-3">
                 <label for="ward-id" class="form-label">Ward<span class="text-danger">*</span></label>
-                <select class="form-select" name="ward_id" 
+                <select class="form-select" name="ward_id"
                         id="ward-id" aria-label="Select a position">
                     <option selected disabled>Select Candidate Ward (Location)</option>
                     <option v-for="(ward, index) in wards" :value=ward.id :key=index>
@@ -103,7 +103,7 @@
         },
 
         computed: {
-            ...mapState(['locations', 'wards', 'positions'])
+            ...mapState(['locations', 'wards', 'positions', 'selectedWard'])
         },
 
         beforeMount(){
@@ -120,6 +120,21 @@
             updatePosition(e){
                 this.position = e.target.value
                 console.log(e.target.value)
+            },
+
+            async updateSelectedWard(e){
+
+                let wardId = e.target.value
+                
+                let selectedWard = await axios.get(`/api/locations/wards/${wardId}`)
+                
+                selectedWard = selectedWard.data.data
+                console.log(selectedWard)
+
+                this.ward = selectedWard.id
+                this.constituency = selectedWard.constituency.id
+                this.county = selectedWard.constituency.county.id
+                this.country = selectedWard.constituency.county.country.id
             }
         }
     }

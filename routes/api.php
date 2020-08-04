@@ -12,6 +12,7 @@ Route::namespace('Api')->group(function(){
     Route::get('/locations/counties', 'LocationsController@counties');
     Route::get('/locations/constituencies', 'LocationsController@constituencies');
     Route::get('/locations/wards', 'LocationsController@wards');
+    Route::get('/locations/wards/{ward}', 'LocationsController@wardShow');
 
     Route::get('/positions', 'PositionsController@index');
 });

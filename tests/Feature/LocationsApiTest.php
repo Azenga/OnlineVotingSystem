@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Ward;
 use App\County;
 use App\Country;
 use Tests\TestCase;
@@ -64,5 +65,19 @@ class LocationsApiTest extends TestCase
 
         $this->getJson('/api/locations/wards')
              ->assertOk();
-    }    
+    }  
+    
+    /**
+     * @test
+     * @group api
+     */
+    public function one_can_get_a_reversed_location_object_from_ward()
+    {
+        $this->withoutExceptionHandling();
+
+        $ward = factory(Ward::class)->create();
+
+        $this->getJson('/api/locations/wards/' . $ward->id)
+            ->assertOk();
+    }
 }
