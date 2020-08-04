@@ -8,15 +8,27 @@ class County extends Model
 {
     protected $fillable = ['name', 'region'];
 
-
-    public function path()
-    {
-        return '/admin/counties/' . $this->id;
-    }
+    /**
+     * Relationships
+     */
 
     public function constituencies()
     {
         return $this->hasMany(Constituency::class);
     }
+
+    public function vyings()
+    {
+        return $this->morphMany(Vie::class, 'vieable');
+    }
+
+
+    /**
+     * Helpers and utils
+     */
+    public function path()
+    {
+        return '/admin/counties/' . $this->id;
+    }    
     
 }

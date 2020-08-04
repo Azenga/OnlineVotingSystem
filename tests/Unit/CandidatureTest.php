@@ -23,6 +23,7 @@ class CandidatureTest extends TestCase
         $candidature = factory(Candidature::class)->create();
 
         $this->assertCount(1, Candidature::all());
+        
 
         $this->assertTrue(User::all()->count() > 0);
         $this->assertTrue(Position::all()->count() > 0);

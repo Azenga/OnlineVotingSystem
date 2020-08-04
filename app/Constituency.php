@@ -9,6 +9,10 @@ class Constituency extends Model
 
     protected $fillable = ['name', 'county_id', 'description'];
 
+
+    /**
+     * Relationships
+     */
     public function county()
     {
         return $this->belongsTo(County::class);
@@ -18,7 +22,17 @@ class Constituency extends Model
     {
         return $this->hasMany(Ward::class);
     }
+
+    public function vyings()
+    {
+        return $this->morphMany(Vie::class, 'vieable');
+    }
     
+
+    /**
+     * Utilities and helpers
+     * 
+     */
     public function path()
     {
         return "/admin/constituencies/" . $this->id;

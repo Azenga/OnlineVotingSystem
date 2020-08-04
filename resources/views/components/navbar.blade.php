@@ -20,6 +20,7 @@
                     <li class="nav-item"><a href="{{ route('admin.wards.index') }}" class="nav-link">Wards</a></li>
                     <li class="nav-item ml-2"><a href="{{ route('admin.roles.index') }}" class="nav-link">Roles</a></li>
                     <li class="nav-item"><a href="{{ route('admin.users.index') }}" class="nav-link">Users</a></li>
+                    <li class="nav-item"><a href="{{ route('admin.candidates.index') }}" class="nav-link">Candidates</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

@@ -41,6 +41,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * Scopes
+     */
+
+     public function scopeRole($query, Role $role)
+     {
+         return $query->where('role_id', $role->id);
+     }
+
+    /**
      * 
      * Relationships
      * 
@@ -54,6 +63,11 @@ class User extends Authenticatable
     public function ward()
     {
         return $this->belongsTo(Ward::class);
+    }
+
+    public function candidature()
+    {
+        return $this->hasOne(Candidature::class);
     }
 
 

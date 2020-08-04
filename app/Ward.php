@@ -24,6 +24,11 @@ class Ward extends Model
         return $this->hasMany(User::class);
     }
 
+    public function vyings()
+    {
+        return $this->morphMany(Vie::class, 'vieable');
+    }
+
 
     /**
      * Utility methods

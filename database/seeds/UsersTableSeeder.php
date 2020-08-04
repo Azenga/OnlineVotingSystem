@@ -13,17 +13,10 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
 
-        for ($i=0; $i < 200; $i++) { 
-
-            srand(time());
-
-            factory(User::class)->create([
-                'role_id' => rand(1, 5),
-                'ward_id' => rand(1, 150),
-            ]);
-        }
-            
-        srand(time());
+        factory(User::class, 200)->create([
+            'role_id' => 5,
+            'ward_id' => rand(1, 150),
+        ]);
         
         factory(User::class)->create([
             'name' => 'Azenga Kevin',
