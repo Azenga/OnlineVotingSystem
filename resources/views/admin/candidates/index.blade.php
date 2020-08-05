@@ -39,11 +39,11 @@
                             <td>{{ $user->candidature->where() }}</td>
                             <td>{{ $user->candidature->created_at->format('d/m/Y') }}</td>
                             <td class="d-flex">                                
-                                <a href="{{ $user->path() }}" class="btn btn-sm btn-info btn-edit-level">
+                                <a href="{{ route('admin.candidates.show', $user->id) }}" class="btn btn-sm btn-info btn-edit-level">
                                     <i class="fa fa-eye"></i>
                                 </a>     
                                 
-                                <form action="{{ route('admin.users.destroy', $user) }}" method="post">
+                                <form action="{{ route('admin.candidates.destroy', $user->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger ml-3">

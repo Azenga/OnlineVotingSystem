@@ -101,7 +101,19 @@ class CandidatesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        User::findOrFail($id)->candidature->update($request->all());
+        $data = $request->validate([
+            'position_id' => ['bail', 'required', 'numeric'],
+            'party' => ['string'],
+            'incumbent' => [],
+            'running_mate_id' => ['numeric']
+        ]);
+        
+        User::findOrFail($id)->candidature->update(
+            array_merge(
+                $data,
+                ['incumbent' => array_key_exists('incumbent', $data) ? $data['incumbent'] == 'on' : false],
+            )
+        );
 
         return redirect()->route('admin.candidates.show', $id);
     }
@@ -114,6 +126,14 @@ class CandidatesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->candidature->delete();
+
+        $user->update([
+            'role_id' => 1
+        ]);
+
+        return redirect()->route('admin.candidates.index');
     }
 }

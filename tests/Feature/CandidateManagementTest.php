@@ -8,6 +8,7 @@ use App\User;
 use App\Ward;
 use App\Position;
 use Tests\TestCase;
+use App\Candidature;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -160,7 +161,7 @@ class CandidateManagementTest extends TestCase
             'position_id' => $position->id,
             'running_mate_id' => $runningMate->id,
             'party' => 'JAP',
-            'incumbent' => true
+            'incumbent' => 'on'
         ])->assertRedirect('/admin/candidates/' . User::first()->id);
 
         $this->assertEquals(User::first()->candidature->position_id, $position->id);
@@ -170,16 +171,34 @@ class CandidateManagementTest extends TestCase
         
     }
 
-    public function one_can_delete_another_user()
+
+    /**
+     * @test
+     * 
+     * @group candidate
+     */
+    public function admin_can_revoke_candidature()
     {        
         $this->withoutExceptionHandling();
         
-        factory(User::class)->create();
+        factory(Role::class)->create();
 
-        $this->delete(User::first()->path())
-             ->assertRedirect('/admin/users');
+        factory(Role::class)->create();
 
-        $this->assertCount(0, User::all());
+
+        $this->post('/admin/candidates', array_merge(
+            factory(User::class)->make()->toArray(),
+            ['position_id' => $position_id = factory(Position::class)->create()->id]
+        ));
+
+        $this->delete('/admin/candidates/' . User::first()->id)
+             ->assertRedirect('/admin/candidates');
+
+        $this->assertCount(0, Candidature::all());
+        
+        $this->assertEquals(1, User::first()->role_id);
+
+        $this->assertCount(1, User::all());
     }
 
 }
