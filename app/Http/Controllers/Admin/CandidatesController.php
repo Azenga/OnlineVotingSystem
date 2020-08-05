@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Role;
 use App\User;
+use App\Position;
 use App\Candidature;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -71,7 +72,9 @@ class CandidatesController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::with(['candidature.position.level'])->findOrFail($id);
+
+        return view('admin.candidates.show', compact('user'));
     }
 
     /**
@@ -82,7 +85,11 @@ class CandidatesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::with(['candidature'])->findOrFail($id);
+        $positions = Position::all();
+
+        return view('admin.candidates.edit', compact('user',  'positions'));
+        
     }
 
     /**
@@ -94,7 +101,9 @@ class CandidatesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        User::findOrFail($id)->candidature->update($request->all());
+
+        return redirect()->route('admin.candidates.show', $id);
     }
 
     /**

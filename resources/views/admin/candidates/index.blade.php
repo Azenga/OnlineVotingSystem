@@ -21,8 +21,8 @@
                         <th>Phone</th>
                         <th>ID Number</th>
                         <th>Position</th>
-                        <th>Upadated</th>
-                        <th>Created</th>
+                        <th>Location</th>
+                        <th>Since</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -36,8 +36,8 @@
                             <td>{{ $user->phone_number }}</td>
                             <td>{{ $user->national_id_number }}</td>
                             <td>{{ $user->candidature->getPosition() }}</td>
-                            <td>{{ $user->updated_at->format('d/m/Y') }}</td>   
-                            <td>{{ $user->created_at->format('d/m/Y') }}</td>
+                            <td>{{ $user->candidature->where() }}</td>
+                            <td>{{ $user->candidature->created_at->format('d/m/Y') }}</td>
                             <td class="d-flex">                                
                                 <a href="{{ $user->path() }}" class="btn btn-sm btn-info btn-edit-level">
                                     <i class="fa fa-eye"></i>

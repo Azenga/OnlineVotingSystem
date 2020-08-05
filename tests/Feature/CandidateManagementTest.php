@@ -84,4 +84,102 @@ class CandidateManagementTest extends TestCase
             ))->assertSessionHasErrors($field);
         }
     }
+
+    /**
+     * @test
+     * 
+     * @group candidate
+     */
+    public function admin_can_view_a_candidate_page()
+    {
+        $this->withoutExceptionHandling();
+
+        factory(Role::class)->create();
+
+        factory(Role::class)->create();
+
+        $this->post('/admin/candidates', array_merge(
+            factory(User::class)->make()->toArray(),
+            ['position_id' => $position_id = factory(Position::class)->create()->id]
+        ));
+        
+        $response = $this->get('/admin/candidates/' . User::query()->role(Role::findOrFail(2))->get()->first()->id);
+        $response->assertOk();
+        $response->assertViewIs('admin.candidates.show');
+        $response->assertViewHas('user');
+
+    }
+
+    /**
+     * @test
+     * @group candidate
+     */
+    public function admin_can_view_candidate_edit_page()
+    {
+        $this->withoutExceptionHandling();
+
+        factory(Role::class)->create();
+
+        factory(Role::class)->create();
+
+        $this->post('/admin/candidates', array_merge(
+            factory(User::class)->make()->toArray(),
+            ['position_id' => $position_id = factory(Position::class)->create()->id]
+        ));
+
+        $this->get('/admin/candidates/' . User::first()->id . '/edit')
+             ->assertOk()
+             ->assertViewIs('admin.candidates.edit')
+             ->assertViewHasAll(['user', 'positions']);
+    }
+
+    /**
+     * @test
+     * @group candidate
+     */
+    public function admin_can_update_candidate_details()
+    {
+        $this->withoutExceptionHandling();
+
+        factory(Role::class)->create();
+
+        factory(Role::class)->create();
+
+
+        $this->post('/admin/candidates', array_merge(
+            factory(User::class)->make()->toArray(),
+            ['position_id' => $position_id = factory(Position::class)->create()->id]
+        ));
+
+        $position = factory(Position::class)->create();
+
+        $runningMate = factory(User::class)->create();
+
+        
+        $this->patch('/admin/candidates/' . User::first()->id, [
+            'position_id' => $position->id,
+            'running_mate_id' => $runningMate->id,
+            'party' => 'JAP',
+            'incumbent' => true
+        ])->assertRedirect('/admin/candidates/' . User::first()->id);
+
+        $this->assertEquals(User::first()->candidature->position_id, $position->id);
+        $this->assertEquals(User::first()->candidature->running_mate_id, $runningMate->id);
+        $this->assertEquals(User::first()->candidature->party, 'JAP');
+        $this->assertTrue((bool)User::first()->candidature->incumbent);
+        
+    }
+
+    public function one_can_delete_another_user()
+    {        
+        $this->withoutExceptionHandling();
+        
+        factory(User::class)->create();
+
+        $this->delete(User::first()->path())
+             ->assertRedirect('/admin/users');
+
+        $this->assertCount(0, User::all());
+    }
+
 }
