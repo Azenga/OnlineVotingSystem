@@ -25,6 +25,21 @@
                 </div>
 
                 <div class="mt-3">
+                    <label for="permissions-id" class="form-label">Select Permissions</label>
+                    <select multiple class="form-select"
+                        name="permissions_ids[]" id="permissions-id" aria-label="Select a position">
+                        <option selected disabled>Select Permissions...</option>
+
+                        @foreach ($permissions as $permission)
+                            <option value="{{ $permission->id }}">{{ $permission->title }}</option>
+                        @endforeach
+                    </select>
+                    @error('permissions_ids.*')
+                        <span class="text-danger d-block mt-1">{{ $message }}</span>
+                    @enderror                    
+                </div>
+
+                <div class="mt-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control @error('description') is-invalid @enderror" 
                         name="description" id="description" rows="3">

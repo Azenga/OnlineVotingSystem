@@ -25,6 +25,7 @@ class UpsertRoleRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string'],
+            'permissions_ids' => ['array'],
             'description' => [],
         ];
     }

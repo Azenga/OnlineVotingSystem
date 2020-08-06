@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Role;
+use App\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpsertRoleRequest;
@@ -16,7 +17,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::with('permissions')->get();
 
         return view('admin.roles.index', compact('roles'));
     }
@@ -28,7 +29,9 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view('admin.roles.create');
+        $permissions = Permission::all();
+        
+        return view('admin.roles.create', compact('permissions'));
     }
 
     /**
@@ -39,7 +42,11 @@ class RolesController extends Controller
      */
     public function store(UpsertRoleRequest $request)
     {
-        Role::create($request->validated());
+        //dd($request->validated()['permissions_ids']);
+
+        $role = Role::create($request->validated());
+
+        $role->permissions()->sync($request->validated()['permissions_ids']);
 
         return redirect()->route('admin.roles.index');
     }
@@ -52,6 +59,8 @@ class RolesController extends Controller
      */
     public function show(Role $role)
     {
+        $role->load('permissions');
+
         return view('admin.roles.show', compact('role'));
 
     }
@@ -64,7 +73,11 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('admin.roles.edit', compact('role'));
+        $permissions = Permission::all();
+
+        $role->load('permissions');
+        
+        return view('admin.roles.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -76,7 +89,11 @@ class RolesController extends Controller
      */
     public function update(UpsertRoleRequest $request, Role $role)
     {
+        //dd($request->validated()['permissions_ids']);
+
         $role->update($request->validated());
+
+        $role->permissions()->sync($request->validated()['permissions_ids']);
 
         return redirect()->route('admin.roles.show', $role);
     }

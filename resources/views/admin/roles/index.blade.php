@@ -30,7 +30,7 @@
                         <tr>
                             <td>{{ $role->id }}</td>
                             <td>{{ $role->title }}</td>
-                            <td>{{ 'Not Covered' }}</td>
+                            <td>{{ $role->permissions->count() }}</td>
                             <td>{{ $role->description }}</td>
                             <td>{{ $role->updated_at->format('d/m/Y') }}</td>   
                             <td>{{ $role->created_at->format('d/m/Y') }}</td>
