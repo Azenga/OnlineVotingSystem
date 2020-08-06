@@ -43,7 +43,7 @@ class StationManagmentTest extends TestCase
         $this->get('/admin/stations/create')
              ->assertOk()
              ->assertViewIs('admin.stations.create')
-             ->assertViewHas('users');
+             ->assertViewHasAll(['users', 'wards']);
     }
 
     /**

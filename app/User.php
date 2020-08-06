@@ -70,6 +70,16 @@ class User extends Authenticatable
         return $this->hasOne(Candidature::class);
     }
 
+    public function working()
+    {
+        return $this->hasOne(StationWorker::class);
+    }
+
+    public function workPlace()
+    {
+        return is_null($this->working) ? 'No Station' : $this->working->station->name;
+    }
+
 
     /**
      * Utility methods and helpers

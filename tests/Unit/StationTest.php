@@ -36,4 +36,18 @@ class StationTest extends TestCase
         $this->assertCount(0, Station::all());
 
     }
+
+    /**
+     * @test
+     * @group station
+     */
+    public function a_ward_id_is_required()
+    {
+        $this->expectException(\Exception::class);
+
+        $station = factory(Station::class)->create(['ward_id' => null]);
+
+        $this->assertCount(0, Station::all());
+
+    }    
 }

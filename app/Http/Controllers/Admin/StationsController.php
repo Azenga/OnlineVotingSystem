@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Role;
 use App\User;
+use App\Ward;
 use App\Station;
 use App\StationWorker;
 use Illuminate\Http\Request;
@@ -31,8 +32,10 @@ class StationsController extends Controller
     public function create()
     {
         $users = User::query()->role(Role::findOrFail(3))->get();
+
+        $wards = Ward::all();
         
-        return view('admin.stations.create', compact('users'));
+        return view('admin.stations.create', compact('users', 'wards'));
     }
 
     /**
@@ -45,16 +48,20 @@ class StationsController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'unique:stations'],
+            'ward_id' => ['required', 'numeric'],
             'users_ids' => ['array'],
         ]);
 
         $station = Station::create($data);
 
         foreach ($data['users_ids'] as $key => $value) {
+            
             StationWorker::create([
                 'user_id' => $value,
                 'station_id' => $station->id,
             ]);
+
+            User::findOrFail($value)->update(['role_id' => 3]);
         }
 
         return redirect()->route('admin.stations.index');

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Station extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'ward_id'];
 
 
     /**

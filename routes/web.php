@@ -31,5 +31,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
         'users' => 'UsersController',
         'candidates' => 'CandidatesController',
         'stations' => 'StationsController',
+        'officers' => 'OfficersController',
     ]);
 });

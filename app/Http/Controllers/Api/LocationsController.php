@@ -33,12 +33,12 @@ class LocationsController extends Controller
 
     public function wards()
     {
-        return WardResource::collection(Ward::all());
+        return WardResource::collection(Ward::with('users')->get());
     }
 
     public function wardShow(Ward $ward)
     {
-        $ward->load('constituency.county.country');
+        $ward->load(['constituency.county.country', 'users']);
 
         return new WardResource($ward);
 

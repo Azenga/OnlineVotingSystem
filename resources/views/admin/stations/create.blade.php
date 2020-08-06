@@ -24,18 +24,8 @@
                     @enderror
                 </div>
 
-                <div class="mt-3">
-                    <label for="user-id" class="form-label">Select Officers <span class="text-danger">*</span></label>
-                    <select multiple class="form-select @error('user_id') is-invalid @enderror" 
-                        name="users_ids[]" id="user-id" aria-label="Select a position">
-                        <option selected disabled>Select Officers</option>
-                        @foreach ($users as $user)
-                            <option value="{{ $user->id }}" {{ old('user_id') ? 'selected' : '' }}>{{ $user->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('users_ids.*')
-                        <span class="text-danger d-block mt-1">{{ $message }}</span>
-                    @enderror
+                <div>
+                    <add-station />
                 </div>
 
                 <div class="mt-3">

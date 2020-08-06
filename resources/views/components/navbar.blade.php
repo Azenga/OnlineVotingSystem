@@ -21,6 +21,7 @@
                     <li class="nav-item"><a href="{{ route('admin.roles.index') }}" class="nav-link">Roles</a></li>
                     <li class="nav-item"><a href="{{ route('admin.users.index') }}" class="nav-link">Users</a></li>
                     <li class="nav-item"><a href="{{ route('admin.candidates.index') }}" class="nav-link">Candidates</a></li>
+                    <li class="nav-item"><a href="{{ route('admin.officers.index') }}" class="nav-link">Officers</a></li>
                     <li class="nav-item"><a href="{{ route('admin.stations.index') }}" class="nav-link">Polling Stations</a></li>
                 </ul>
 
