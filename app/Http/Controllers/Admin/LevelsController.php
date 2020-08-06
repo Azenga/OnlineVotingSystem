@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Level;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\UpsertLevelRequest;
 
 class LevelsController extends Controller
@@ -16,6 +17,8 @@ class LevelsController extends Controller
      */
     public function index()
     {
+        Gate::authorize('view_levels_page');
+        
         return view('admin.levels.index', ['levels' => Level::with('positions')->get()]);
     }
 
