@@ -6,6 +6,7 @@ use App\Role;
 use App\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\UpsertRoleRequest;
 
 class RolesController extends Controller
@@ -17,6 +18,8 @@ class RolesController extends Controller
      */
     public function index()
     {
+        Gate::authorize('view_roles_page');
+        
         $roles = Role::with('permissions')->get();
 
         return view('admin.roles.index', compact('roles'));
@@ -29,6 +32,8 @@ class RolesController extends Controller
      */
     public function create()
     {
+        Gate::authorize('view_create_role_page');
+
         $permissions = Permission::all();
         
         return view('admin.roles.create', compact('permissions'));
@@ -42,7 +47,7 @@ class RolesController extends Controller
      */
     public function store(UpsertRoleRequest $request)
     {
-        //dd($request->validated()['permissions_ids']);
+        Gate::authorize('store_role');
 
         $role = Role::create($request->validated());
 
@@ -59,6 +64,8 @@ class RolesController extends Controller
      */
     public function show(Role $role)
     {
+        Gate::authorize('view_single_role_page');
+
         $role->load('permissions');
 
         return view('admin.roles.show', compact('role'));
@@ -73,6 +80,8 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
+        Gate::authorize('view_edit_role_page');
+
         $permissions = Permission::all();
 
         $role->load('permissions');
@@ -89,6 +98,7 @@ class RolesController extends Controller
      */
     public function update(UpsertRoleRequest $request, Role $role)
     {
+        Gate::authorize('update_role');
         //dd($request->validated()['permissions_ids']);
 
         $role->update($request->validated());
@@ -106,6 +116,7 @@ class RolesController extends Controller
      */
     public function destroy(Role $role)
     {
+        Gate::authorize('delete_role');
 
         $role->delete();
         

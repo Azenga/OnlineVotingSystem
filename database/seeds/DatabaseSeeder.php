@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             CountiesTableSeeder::class,
             ConstituenciesTableSeeder::class,
             WardsTableSeeder::class,
-            UsersTableSeeder::class
+            UsersTableSeeder::class,
+            PermissionsTableSeeder::class,
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class PermissionsController extends Controller
 {
@@ -15,6 +16,8 @@ class PermissionsController extends Controller
      */
     public function index()
     {
+        Gate::authorize('view_permissions_page');
+        
         $permissions = Permission::all();
         return view('admin.permissions.index', compact('permissions'));
     }
@@ -26,6 +29,8 @@ class PermissionsController extends Controller
      */
     public function create()
     {
+        Gate::authorize('view_create_permission_page');
+
         return view('admin.permissions.create');
     }
 
@@ -37,6 +42,8 @@ class PermissionsController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('store_permission');
+
         $data = $request->validate([
             'title' => ['required', 'string'],
         ]);
@@ -88,6 +95,11 @@ class PermissionsController extends Controller
      */
     public function destroy(Permission $permission)
     {
-        //
+        Gate::authorize('delete_permission');
+
+        $permission->delete();
+
+        return redirect()->route('admin.permissions.index');
+        
     }
 }

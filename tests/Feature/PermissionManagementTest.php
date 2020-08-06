@@ -107,6 +107,10 @@ class PermissionManagementTest extends TestCase
         $this->assertEquals($permission->description, Permission::first()->description);
     }
 
+    /**
+     * @test
+     * @group permission
+     */
     public function admin_can_delete_a_permission()
     {        
         $this->withoutExceptionHandling();
