@@ -21,7 +21,6 @@
                         <th>Phone</th>
                         <th>ID Number</th>
                         <th>Alive</th>
-                        <th>Active</th>
                         <th>Voted</th>
                         <th>Upadated</th>
                         <th>Created</th>
@@ -38,7 +37,6 @@
                             <td>{{ $user->phone_number }}</td>
                             <td>{{ $user->national_id_number }}</td>
                             <td>{{ $user->isalive ? 'Alive' : 'Dead' }}</td>
-                            <td>{{ $user->isactive ? 'Active' : 'Not Active' }}</td>
                             <td>{{ $user->hasvoted ? 'True' : 'False' }}</td>
                             <td>{{ $user->updated_at->format('d/m/Y') }}</td>   
                             <td>{{ $user->created_at->format('d/m/Y') }}</td>

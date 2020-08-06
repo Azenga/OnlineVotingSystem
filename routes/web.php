@@ -28,6 +28,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
         'constituencies' => 'ConstituenciesController',
         'wards' => 'WardsController',
         'roles' => 'RolesController',
+        'permissions' => 'PermissionsController',
         'users' => 'UsersController',
         'candidates' => 'CandidatesController',
         'stations' => 'StationsController',
