@@ -30,7 +30,7 @@ class PositionsController extends Controller
      */
     public function create()
     {
-        Gate::authorize('view_create_position-page');
+        Gate::authorize('view_create_position_page');
 
         return view('admin.positions.create', ['levels' => Level::all()]);
     }

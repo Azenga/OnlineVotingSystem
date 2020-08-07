@@ -1,18 +1,24 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
+
+@section('title', 'Add Position')
+
+@section('btn')
+    <a href="{{ route('admin.positions.index') }}" class="btn btn-sm btn-primary">
+        <i class="fa fa-long-arrow-alt-left"></i>
+        <span>Back</span>
+    </a>
+@endsection
 
 @section('content')
 
-<div class="container">
+<div class="">
     <div class="">
-        <a href="{{ route('admin.positions.index') }}" class="btn btn-sm btn-primary">
-            <i class="fa fa-long-arrow-alt-left"></i>
-        </a>
     </div>
 
     <div class="py-3">
         <form class="row justify-content-center" action="{{ route('admin.positions.store') }}" method="post">
-            <div class="col-md-8">
-                <h4 class="font-weight-bold">Add Position</h4>
+            <div class="col-md-10">
+                <h4 class="font-weight-bold"></h4>
                 @csrf
                 <div class="mt-3">
                     <label for="title" class="form-label">Title <span class="text-danger">*</span></label>

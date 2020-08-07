@@ -1,16 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
+
+@section('title', 'Levels')
+
+@section('btn')
+    <a href="{{ route('admin.levels.create') }}" class="btn btn-sm btn-primary">Add Level</a>
+@endsection
 
 
 @section('content')
-<div class="container">
-
-    <div class="d-flex justify-content-between align-items-center">
-        <h4 class="font-weight-bold">Levels</h4>
-        <a href="{{ route('admin.levels.create') }}" class="btn btn-sm btn-primary">Add Level</a>
-    </div>
-
+<div class="">
     <div class="py-3">
-
         @if ($levels->count())
         <div class="table-responsive">
             <table class="table table-striped">

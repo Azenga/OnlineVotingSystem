@@ -1,18 +1,20 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
+
+@section('title', 'Add Level')
+
+@section('btn')
+    <a href="{{ route('admin.levels.index') }}" class="btn btn-sm btn-primary">
+        <i class="fa fa-long-arrow-alt-left"></i>
+        <span>Back</span>
+    </a>
+@endsection
 
 @section('content')
 
-<div class="container">
-    <div class="">
-        <a href="{{ route('admin.levels.index') }}" class="btn btn-sm btn-primary">
-            <i class="fa fa-long-arrow-alt-left"></i>
-        </a>
-    </div>
-
+<div class="">
     <div class="py-3">
         <form class="row justify-content-center" action="{{ route('admin.levels.store') }}" method="post">
-            <div class="col-md-8">
-                <h4 class="font-weight-bold">Add Level</h4>
+            <div class="col-md-10">
                 @csrf
                 <div class="mt-3">
                     <label for="title" class="form-label">Title <span class="text-danger">*</span></label>

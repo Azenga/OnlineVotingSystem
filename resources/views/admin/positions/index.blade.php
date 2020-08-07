@@ -1,13 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
+
+@section('title', 'Positions')
+
+@section('btn')
+    <a href="{{ route('admin.positions.create') }}" class="btn btn-sm btn-primary">Add Position</a>
+@endsection
 
 @section('content')
-<div class="container">
-
-    <div class="d-flex justify-content-between align-items-center">
-        <h4 class="font-weight-bold">Positions</h4>
-        <a href="{{ route('admin.positions.create') }}" class="btn btn-sm btn-primary">Add Position</a>
-    </div>
-
+<div class="">
     <div class="py-3">
 
         @if ($positions->count())
