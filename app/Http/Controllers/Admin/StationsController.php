@@ -9,6 +9,7 @@ use App\Station;
 use App\StationWorker;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class StationsController extends Controller
 {
@@ -19,6 +20,8 @@ class StationsController extends Controller
      */
     public function index()
     {
+        Gate::authorize('view_stations_page');
+        
         $stations = Station::with('workers')->get();
 
         return view('admin.stations.index', ['stations' => $stations]);
@@ -31,6 +34,8 @@ class StationsController extends Controller
      */
     public function create()
     {
+        Gate::authorize('view_create_station_page');
+
         $users = User::query()->role(Role::findOrFail(3))->get();
 
         $wards = Ward::all();
@@ -46,6 +51,8 @@ class StationsController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('store_station');
+
         $data = $request->validate([
             'name' => ['required', 'string', 'unique:stations'],
             'ward_id' => ['required', 'numeric'],
@@ -75,6 +82,8 @@ class StationsController extends Controller
      */
     public function show(Station $station)
     {
+        Gate::authorize('view_single_station_page');
+
         $station->load('workers.user');
 
         return view('admin.stations.show', compact('station'));
@@ -89,6 +98,8 @@ class StationsController extends Controller
      */
     public function edit(Station $station)
     {
+        Gate::authorize('view_edit_station_page');
+
         $users = User::query()->role(Role::findOrFail(3))->get();
 
         $station->load('workers.user');
@@ -106,6 +117,7 @@ class StationsController extends Controller
     public function update(Request $request, Station $station)
     {
         //dd($request->all());
+        Gate::authorize('update_station');
         
         $data = $request->validate([
             'name' => ['required', 'string'],
@@ -134,6 +146,8 @@ class StationsController extends Controller
      */
     public function destroy(Station $station)
     {
+        Gate::authorize('delete_station');
+        
         $station->workers()->delete();
         
         $station->delete();

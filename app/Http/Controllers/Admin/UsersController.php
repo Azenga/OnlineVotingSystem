@@ -7,6 +7,7 @@ use App\User;
 use App\Ward;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -20,6 +21,8 @@ class UsersController extends Controller
      */
     public function index()
     {
+        Gate::authorize('view_users_page');
+        
         $users = User::all();
 
         return view('admin.users.index', compact('users'));
@@ -33,6 +36,8 @@ class UsersController extends Controller
      */
     public function create()
     {
+        Gate::authorize('view_create_user_page');
+
         $roles = Role::all();
         $wards = Ward::all();
 
@@ -46,6 +51,7 @@ class UsersController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+        Gate::authorize('store_user');
 
         User::create(
             array_merge(
@@ -65,6 +71,8 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
+        Gate::authorize('view_single_user_page');
+
         return view('admin.users.show', compact('user'));
     }
 
@@ -76,6 +84,8 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        Gate::authorize('view_edit_user_page');
+
         $roles = Role::all();
         $wards = Ward::all();
 
@@ -91,6 +101,8 @@ class UsersController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
+        Gate::authorize('update_user');
+
         $user->update($request->validated());
 
         return redirect()->route('admin.users.show', $user);
@@ -104,7 +116,8 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-
+        Gate::authorize('delete_user');
+        
         $user->delete();
         
         return redirect()->route('admin.users.index');

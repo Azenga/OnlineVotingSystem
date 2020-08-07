@@ -8,6 +8,7 @@ use App\Position;
 use App\Candidature;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreCandidateRequest;
 
@@ -20,6 +21,8 @@ class CandidatesController extends Controller
      */
     public function index()
     {
+        Gate::authorize('view_candidates_page');
+
         //Get candidates
         $role = Role::findOrFail(2);
 
@@ -35,6 +38,8 @@ class CandidatesController extends Controller
      */
     public function create()
     {
+        Gate::authorize('view_create_candidate_page');
+        
         return view('admin.candidates.create');
     }
 
@@ -46,6 +51,8 @@ class CandidatesController extends Controller
      */
     public function store(StoreCandidateRequest $request)
     {
+        Gate::authorize('store_candidate');
+
         $user = User::create(
             array_merge(
                 $request->validated(),
@@ -72,6 +79,8 @@ class CandidatesController extends Controller
      */
     public function show($id)
     {
+        Gate::authorize('view_single_candidate_page');
+
         $user = User::with(['candidature.position.level'])->findOrFail($id);
 
         return view('admin.candidates.show', compact('user'));
@@ -85,6 +94,8 @@ class CandidatesController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('view_edit_candidate_page');
+
         $user = User::with(['candidature'])->findOrFail($id);
         $positions = Position::all();
 
@@ -101,6 +112,8 @@ class CandidatesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('update_candidate');
+
         $data = $request->validate([
             'position_id' => ['bail', 'required', 'numeric'],
             'party' => ['string'],
@@ -126,6 +139,8 @@ class CandidatesController extends Controller
      */
     public function destroy($id)
     {
+        Gate::authorize('delete_candidate');
+        
         $user = User::findOrFail($id);
 
         $user->candidature->delete();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Level;
 use App\Position;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpsertPositionRequest;
 
@@ -17,6 +18,8 @@ class PositionsController extends Controller
      */
     public function index()
     {
+        Gate::authorize('view_positions_page');
+
         return view('admin.positions.index', ['positions' => Position::with('level')->get()]);
     }
 
@@ -27,6 +30,8 @@ class PositionsController extends Controller
      */
     public function create()
     {
+        Gate::authorize('view_create_position-page');
+
         return view('admin.positions.create', ['levels' => Level::all()]);
     }
 
@@ -38,6 +43,7 @@ class PositionsController extends Controller
      */
     public function store(UpsertPositionRequest $request)
     {
+        Gate::authorize('store_position');
         Position::create($request->validated());
 
         return redirect()->route('admin.positions.index');
@@ -51,6 +57,7 @@ class PositionsController extends Controller
      */
     public function show(Position $position)
     {
+        Gate::authorize('view_single_position_page');
         
         $position->load('level');
 
@@ -66,6 +73,8 @@ class PositionsController extends Controller
      */
     public function edit(Position $position)
     {
+        Gate::authorize('view_edit_position_page');
+
         $position->load('level');
         $levels = Level::all();
 
@@ -81,6 +90,8 @@ class PositionsController extends Controller
      */
     public function update(UpsertPositionRequest $request, Position $position)
     {
+        Gate::authorize('update_position');
+
         $position->update($request->validated());
 
         return redirect()->route('admin.positions.show', $position);
@@ -94,6 +105,8 @@ class PositionsController extends Controller
      */
     public function destroy(Position $position)
     {
+        Gate::authorize('delete_position');
+        
         $position->delete();
 
         return redirect()->route('admin.positions.index');

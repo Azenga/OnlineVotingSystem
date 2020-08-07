@@ -29,6 +29,7 @@ class LevelsController extends Controller
      */
     public function create()
     {
+        Gate::authorize('view_create_level_page');
         return view('admin.levels.create');
     }
 
@@ -40,6 +41,7 @@ class LevelsController extends Controller
      */
     public function store(UpsertLevelRequest $request)
     {
+        Guard::authorize('store_level');
         Level::create($request->validated());
 
         return redirect()->route('admin.levels.index');
@@ -53,6 +55,7 @@ class LevelsController extends Controller
      */
     public function show(Level $level)
     {
+        Guard::authorize('view_single_level_page');
         //
     }
 
@@ -64,6 +67,7 @@ class LevelsController extends Controller
      */
     public function edit(Level $level)
     {
+        Guard::authorize('view_edit_level_page');
         //
     }
 
@@ -76,6 +80,7 @@ class LevelsController extends Controller
      */
     public function update(UpsertLevelRequest $request, Level $level)
     {
+        Guard::authorize('update_level');
         $level->update($request->validated());
 
         return redirect()->route('admin.levels.show', $level);
@@ -89,6 +94,8 @@ class LevelsController extends Controller
      */
     public function destroy(Level $level)
     {
+        Guard::authorize('delete_level');
+        
         $level->delete();
 
         return back();

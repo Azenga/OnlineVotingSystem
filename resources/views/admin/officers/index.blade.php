@@ -52,7 +52,7 @@
         <div class="d-flex justify-content-center align-items-center">
             <i class="fa fa-info-circle fa-2x text-info"></i>
 
-            <span class="font-weight-bold ml-3">No candidates added yet</span>
+            <span class="font-weight-bold ml-3">No officers added yet</span>
         </div>
         @endif
     </div>
