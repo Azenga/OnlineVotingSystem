@@ -3,6 +3,7 @@
 
 // Variables
 @import 'variables';
+@import 'dashboard.scss';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -13,3 +14,17 @@
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+@import "mixins.scss";
+@import "global.scss";
+@import "utilities.scss";
+
+// Customied Components
+@import "dropdowns.scss";
+@import "navs.scss";
+@import "buttons.scss";
+@import "cards.scss";
+@import "charts.scss";
+@import "login.scss";
+@import "error.scss";
+@import "footer.scss";
