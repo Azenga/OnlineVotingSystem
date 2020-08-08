@@ -49,6 +49,11 @@ class User extends Authenticatable
          return $query->where('role_id', $role->id);
      }
 
+     public function scopeWard($query, Ward $ward)
+     {
+         return $query->where('ward_id', $ward->id);
+     }
+
     /**
      * 
      * Relationships

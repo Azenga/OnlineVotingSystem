@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('img/svgs/logo.svg') }}" height="48" alt="IEBC Logo">
+                <img src="{{ asset('img/svgs/logo.svg') }}" height="40" alt="IEBC Logo">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
@@ -13,7 +13,11 @@
                 <ul class="navbar-nav mr-auto">
 
                     <!-- Some are here just for testing -->
-                    <li class="nav-item"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
+                    <li class="nav-item ml-0 ml-md-5"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
+                    <li class="nav-item ml-0 ml-md-3"><a href="{{ route('home') }}" class="nav-link">About</a></li>
+                    <li class="nav-item ml-0 ml-md-3"><a href="{{ route('home') }}" class="nav-link">Contact</a></li>
+                    <li class="nav-item ml-0 ml-md-3"><a href="{{ route('home') }}" class="nav-link">FAQs</a></li>
+                    <li class="nav-item ml-0 ml-md-3"><a href="{{ route('home') }}" class="nav-link">Results</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

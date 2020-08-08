@@ -13,14 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
+Route::view('/', 'welcome')->name('home');
 
-Route::view('/dashboard', 'layouts.dashboard');
-
+/*
+|----------------------------------------------------------------------------
+| Auth Routes
+|----------------------------------------------------------------------------
+|
+| The basic auth routes but without includin the register route
+|
+*/
 Auth::routes(['register' => false]);
 
-Route::get('/home', 'HomeController@index')->name('home');
-
+/*
+|----------------------------------------------------------------------------
+| Admin Routes
+|----------------------------------------------------------------------------
+|
+| Here are the routes for both the admin and the super admin
+|
+*/
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function(){
 
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
@@ -43,6 +55,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
         ->name('roles.permissions.destroy');
 });
 
+/*
+|----------------------------------------------------------------------------
+| Officers Routes
+|----------------------------------------------------------------------------
+|
+| Here are the routes for officers / sub-admins / clerks and what have you
+|
+*/
 Route::group(['namespace' => 'Officer', 'prefix' => 'officer', 'as' => 'officer.'], function(){
 
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
