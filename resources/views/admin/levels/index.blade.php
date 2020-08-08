@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="">
-    <div class="py-3">
+    <div class="">
         @if ($levels->count())
         <div class="table-responsive">
             <table class="table table-striped">

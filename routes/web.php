@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function(){
 
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
     Route::resources([
         'levels' => 'LevelsController',
         'positions' => 'PositionsController',

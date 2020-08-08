@@ -1,30 +1,23 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
+
+@section('title', 'Add Candidate')
+
+@section('btn')
+<a href="{{ route('admin.candidates.index') }}" class="btn btn-sm btn-primary">
+    <i class="fa fa-long-arrow-alt-left"></i>
+</a>
+@endsection
 
 @section('content')
+<form action="{{ route('admin.candidates.store') }}" method="post">
+    @csrf
 
-<div class="container">
-    <div class="">
-        <a href="{{ route('admin.candidates.index') }}" class="btn btn-sm btn-primary">
-            <i class="fa fa-long-arrow-alt-left"></i>
-        </a>
+    <div>
+        <add-candidate />
     </div>
 
-    <div class="py-3">
-        <form class="row justify-content-center" action="{{ route('admin.candidates.store') }}" method="post">
-            <div class="col-md-8">
-                <h4 class="font-weight-bold">Add Candidate</h4>
-                @csrf
-
-                <div>
-                    <add-candidate />
-                </div>
-
-                <div class="mt-3">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        </form>
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-</div>
-    
+</form>
 @endsection

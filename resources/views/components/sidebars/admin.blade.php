@@ -9,7 +9,7 @@
     <hr class="sidebar-divider my-0">
 
     <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
@@ -61,8 +61,8 @@
         <div id="stations-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quick Actions</h6>
-                <a class="collapse-item" href="#">Browse Stations</a>
-                <a class="collapse-item" href="#">Add Station</a>
+                <a class="collapse-item" href="{{ route('admin.stations.index') }}">Browse Stations</a>
+                <a class="collapse-item" href="{{ route('admin.stations.create') }}">Add Station</a>
             </div>
         </div>
     </li>
@@ -81,8 +81,8 @@
         <div id="counties-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quick Actions</h6>
-                <a class="collapse-item" href="#">Browse Counties</a>
-                <a class="collapse-item" href="#">Add County</a>
+                <a class="collapse-item" href="{{ route('admin.counties.index') }}">Browse Counties</a>
+                <a class="collapse-item" href="{{ route('admin.counties.create') }}">Add County</a>
             </div>
         </div>
     </li>
@@ -97,8 +97,8 @@
         <div id="constituencies-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quick Actions</h6>
-                <a class="collapse-item" href="#">Browse Constituencies</a>
-                <a class="collapse-item" href="#">Add Constituency</a>
+                <a class="collapse-item" href="{{ route('admin.constituencies.index') }}">Browse Constituencies</a>
+                <a class="collapse-item" href="{{ route('admin.constituencies.create') }}">Add Constituency</a>
             </div>
         </div>
     </li>
@@ -113,8 +113,8 @@
         <div id="wards-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quick Actions</h6>
-                <a class="collapse-item" href="#">Browse Wards</a>
-                <a class="collapse-item" href="#">Add Ward</a>
+                <a class="collapse-item" href="{{ route('admin.wards.index') }}">Browse Wards</a>
+                <a class="collapse-item" href="{{ route('admin.wards.create') }}">Add Ward</a>
             </div>
         </div>
     </li>
@@ -133,8 +133,8 @@
         <div id="voters-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quick Actions</h6>
-                <a class="collapse-item" href="#">Browse Voters</a>
-                <a class="collapse-item" href="#">Add Voter</a>
+                <a class="collapse-item" href="{{ route('admin.users.index') }}">Browse Voters</a>
+                <a class="collapse-item" href="{{ route('admin.users.create') }}">Add Voter</a>
             </div>
         </div>
     </li>         
@@ -149,8 +149,8 @@
         <div id="candidates-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quick Actions</h6>
-                <a class="collapse-item" href="#">Browse Candidates</a>
-                <a class="collapse-item" href="#">Add Candidate</a>
+                <a class="collapse-item" href="{{ route('admin.candidates.index') }}">Browse Candidates</a>
+                <a class="collapse-item" href="{{ route('admin.candidates.create') }}">Add Candidate</a>
             </div>
         </div>
     </li>
@@ -165,7 +165,7 @@
         <div id="officers-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quick Actions</h6>
-                <a class="collapse-item" href="#">Browse Officers</a>
+                <a class="collapse-item" href="{{ route('admin.officers.index') }}">Browse Officers</a>
             </div>
         </div>
     </li>                
@@ -184,8 +184,8 @@
         <div id="roles-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quick Actions</h6>
-                <a class="collapse-item" href="#">Browse Roles</a>
-                <a class="collapse-item" href="#">Add Role</a>
+                <a class="collapse-item" href="{{ route('admin.roles.index') }}">Browse Roles</a>
+                <a class="collapse-item" href="{{ route('admin.roles.create') }}">Add Role</a>
             </div>
         </div>
     </li>
@@ -200,8 +200,8 @@
         <div id="permissions-dropdown" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Quick Actions</h6>
-                <a class="collapse-item" href="#">Browse Permissions</a>
-                <a class="collapse-item" href="#">Add Permission</a>
+                <a class="collapse-item" href="{{ route('admin.permissions.index') }}">Browse Permissions</a>
+                <a class="collapse-item" href="{{ route('admin.permissions.create') }}">Add Permission</a>
             </div>
         </div>
     </li>                 

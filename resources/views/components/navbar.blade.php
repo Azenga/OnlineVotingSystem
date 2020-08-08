@@ -13,17 +13,7 @@
                 <ul class="navbar-nav mr-auto">
 
                     <!-- Some are here just for testing -->
-                    <li class="nav-item"><a href="{{ route('admin.levels.index') }}" class="nav-link">Levels</a></li>
-                    <li class="nav-item"><a href="{{ route('admin.positions.index') }}" class="nav-link">Positions</a></li>
-                    <li class="nav-item"><a href="{{ route('admin.counties.index') }}" class="nav-link">Counties</a></li>
-                    <li class="nav-item"><a href="{{ route('admin.constituencies.index') }}" class="nav-link">Constituencies</a></li>
-                    <li class="nav-item"><a href="{{ route('admin.wards.index') }}" class="nav-link">Wards</a></li>
-                    <li class="nav-item"><a href="{{ route('admin.roles.index') }}" class="nav-link">Roles</a></li>
-                    <li class="nav-item"><a href="{{ route('admin.permissions.index') }}" class="nav-link">Permissions</a></li>
-                    <li class="nav-item"><a href="{{ route('admin.users.index') }}" class="nav-link">Users</a></li>
-                    <li class="nav-item"><a href="{{ route('admin.candidates.index') }}" class="nav-link">Candidates</a></li>
-                    <li class="nav-item"><a href="{{ route('admin.officers.index') }}" class="nav-link">Officers</a></li>
-                    <li class="nav-item"><a href="{{ route('admin.stations.index') }}" class="nav-link">Polling Stations</a></li>
+                    <li class="nav-item"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -49,10 +39,15 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                                    <i class="fas fa-tachometer-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <span>Dashboard</span>
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
+                                onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <span>{{ __('Logout') }}</span>
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

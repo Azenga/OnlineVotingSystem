@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="">
-    <div class="py-3">
+    <div class="">
 
         @if ($positions->count())
         <div class="table-responsive">
