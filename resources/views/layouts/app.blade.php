@@ -20,8 +20,8 @@
 <body>
     
     <div id="app">
-        <x-navbar />
-        <main class="py-4">
+        @yield('navbar')
+        <main>
             @yield('content')
         </main>
     </div>
