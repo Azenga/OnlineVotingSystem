@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Permission;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -40,6 +41,20 @@ class AuthServiceProvider extends ServiceProvider
                 });
             }
         }
+
+        //Extra Gates
+
+        Gate::define('view-admin-dashboard', function($user){
+            return $user->role_id == 5 
+                ? Response::allow()
+                : Response::deny('You must be a super administrator');
+        });
+
+        Gate::define('view-officer-dashboard', function($user){
+            return $user->role_id == 3 
+                ? Response::allow()
+                : Response::deny('You must be an officer');
+        });
 
     }
 }

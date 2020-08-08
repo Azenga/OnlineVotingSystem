@@ -39,20 +39,23 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                @can('view-admin-dashboard')
                                 <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
                                     <i class="fas fa-tachometer-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    <span>Dashboard</span>
+                                    <span>Admin Dashboard</span>
                                 </a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                                @endcan
+                                @can('view-officer-dashboard', Model::class)
+                                <a class="dropdown-item" href="{{ route('officer.dashboard') }}">
+                                    <i class="fas fa-tachometer-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <span>Officer Dashboard</span>
+                                </a>
+                                @endcan
+                                <a class="dropdown-item" href="#" role="button" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    <span>{{ __('Logout') }}</span>
+                                    <span>Logout</span>
                                 </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
                             </div>
                         </li>
                     @endguest

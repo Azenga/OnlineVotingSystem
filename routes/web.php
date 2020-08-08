@@ -42,3 +42,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::delete('/roles/{role}/permissions/{permission}', 'RolesPermissionsController@destroy')
         ->name('roles.permissions.destroy');
 });
+
+Route::group(['namespace' => 'Officer', 'prefix' => 'officer', 'as' => 'officer.'], function(){
+
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+    Route::resource('users', 'UsersController');
+    
+});

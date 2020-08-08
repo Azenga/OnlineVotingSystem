@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Officer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,8 +15,8 @@ class DashboardController extends Controller
 
     public function index()
     {
-        Gate::authorize('view-admin-dashboard');
-        
-        return view('admin.dashboard');
+        Gate::authorize('view-officer-dashboard');
+
+        return view('officer.dashboard');
     }
 }

@@ -16,7 +16,11 @@
         <!-- Page Wrapper -->
         <div id="wrapper">
 
-            <x-sidebars.admin />
+            @can('view-admin-dashboard')
+                <x-sidebars.admin />
+            @elsecan('view-officer-dashboard')
+                <x-sidebars.officer />
+            @endcan
             <!-- End of Sidebar -->
 
             <!-- Content Wrapper -->
