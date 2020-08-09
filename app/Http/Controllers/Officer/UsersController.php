@@ -51,12 +51,17 @@ class UsersController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+
         Gate::authorize('store_user');
 
         User::create(
             array_merge(
                 $request->validated(),
-                ['password' => Hash::make('password')],
+                [
+                    'password' => Hash::make('password'),
+                    'role_id' => 1,
+                    'ward_id' => $request->user()->ward_id
+                ],
             )
         );
 

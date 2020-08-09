@@ -33,7 +33,7 @@ class LocationsController extends Controller
 
     public function wards()
     {
-        return WardResource::collection(Ward::with('users')->get());
+        return WardResource::collection(Ward::with('users')->orderBy('name')->get());
     }
 
     public function wardShow(Ward $ward)

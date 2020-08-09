@@ -52,21 +52,7 @@
         @enderror
     </div>
 
-    <div class="mt-3">
-        <label for="role-id" class="form-label">Role<span class="text-danger">*</span></label>
-        <select class="form-select @error('role_id') is-invalid @enderror" 
-            name="role_id" id="role-id" aria-label="Select a position">
-            <option selected disabled>Select User Role</option>
-            @foreach ($roles as $role)
-                <option value="{{ $role->id }}" {{ old('role_id') == $role->id ? 'selected' : '' }}>{{ $role->title }}</option>
-            @endforeach
-        </select>
-        @error('role_id')
-            <span class="text-danger d-block mt-1">{{ $message }}</span>
-        @enderror
-    </div>
-
-    <div class="mt-3">
+    {{-- <div class="mt-3">
         <label for="ward-id" class="form-label">Ward<span class="text-danger">*</span></label>
         <select class="form-select @error('ward_id') is-invalid @enderror" 
             name="ward_id" id="ward-id" aria-label="Select a position">
@@ -78,7 +64,7 @@
         @error('ward_id')
             <span class="text-danger d-block mt-1">{{ $message }}</span>
         @enderror
-    </div>   
+    </div>    --}}
     
     <div class="mt-3">
         <button type="submit" class="btn btn-primary">Submit</button>
