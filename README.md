@@ -40,6 +40,17 @@ php artisan serve
 ## Demo
 
 * Heroku [Online Voting System](http://online-voting-webapp.herokuapp.com/)
+
+## Screenshots
+
+* Admin
+![Admin Dashboard](https://github.com/Azenga/OnlineVotingSystem/blob/master/public/img/screenshots/admin.png)
+
+* Officer
+![Admin Dashboard](https://github.com/Azenga/OnlineVotingSystem/blob/master/public/img/screenshots/officer.png)
+
+* Home
+![Admin Dashboard](https://github.com/Azenga/OnlineVotingSystem/blob/master/public/img/screenshots/home.png)
  
 ## Author
 
