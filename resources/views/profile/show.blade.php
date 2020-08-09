@@ -9,7 +9,7 @@
     <div class="container py-4">
         <div class="row">
             <div class="col-md-3 bg-white p-3 border d-flex flex-column align-items-center">
-                <img class="rounded-circle w-75" src="{{ asset('img/avatar.jpg') }}" alt="Profile Image">
+                <img class="rounded-circle w-75" src="{{ asset($user->image()) }}" alt="Profile Image">
 
                 <div class="mt-3">
                     <h4 class="font-weight-bold text-gray-900">{{ $user->name }}</h4>
@@ -22,13 +22,13 @@
                 <div>
                     <ul class="nav nav-tabs">
                         <li class="nav-item" role="presentation">
-                            <a href="#user-details" aria-controls="user-details" class="nav-link active" role="tab"
+                            <a href="#basic-details" aria-controls="basic-details" class="nav-link active" role="tab"
                                 data-toggle="tab">
                                 Basic Details
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a href="#candidature-details" aria-controls="candidature-details" class="nav-link" role="tab"
+                            <a href="#location-details" aria-controls="location-details" class="nav-link" role="tab"
                                 data-toggle="tab">
                                 Location Details
                             </a>
@@ -36,7 +36,7 @@
                     </ul>
                 
                     <div class="tab-content" style="min-height: 75vh;">
-                        <div id="user-details" class="tab-pane h-100 active" role="tabpanel">
+                        <div id="basic-details" class="tab-pane h-100 active" role="tabpanel">
                             <div class="mt-3 mx-0 mx-md-4">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -94,7 +94,7 @@
                             </div>
                         </div>
                 
-                        <div id="candidature-details" class="tab-pane h-100" role="tabpanel">
+                        <div id="location-details" class="tab-pane h-100" role="tabpanel">
                             <div class="mt-3 mx-0  mx-md-4">
                                 <div class="row">
                                     <div class="col-md-6">

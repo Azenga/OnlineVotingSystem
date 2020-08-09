@@ -98,4 +98,16 @@ class User extends Authenticatable
     {
         return '/admin/users/' . $this->id;
     }
+
+    /**
+     * Get the user profile pic or the default avatar
+     */
+    public function image():string
+    {
+        return is_null($this->profile) 
+            ? "img/avatar.jpg"
+            : is_null($this->profile->image)
+                ? "img/avatar.jpg"
+                : $this->profile->image->path;
+    }
 }

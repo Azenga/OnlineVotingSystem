@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdateProfileRequest;
 
 class ProfilesController extends Controller
@@ -32,7 +34,7 @@ class ProfilesController extends Controller
      */
     public function edit(User $user)
     {
-        return view('profile.edit');
+        return view('profile.edit', compact('user'));
     }
 
     /**
@@ -44,7 +46,44 @@ class ProfilesController extends Controller
      */
     public function update(UpdateProfileRequest $request, User $user)
     {
-        
+        //Update the username
+        $user->update($request->validated());
+
+        //Create a user profile not there yet
+        if(is_null($user->profile)){
+            $user->profile()->create();
+
+            $user = $user->fresh();
+        } 
+
+        //Update the profile
+        $user->fresh()->profile->update($request->validated());
+
+        //Check if the request has an image
+        if($request->hasFile('image')){
+
+            //Check if the user previously had an image
+            if(!is_null($user->profile->image)){
+
+                //Delete the image
+                $user->profile->image->deleteFilesFromStorage();
+
+                //Delete the image record from the database
+                $user->profile->image->delete();
+            }
+
+            //Upload the image
+            $path = $request->file('image')->store('uploads/images/profile', 'public');
+
+            //Resize and crop the image to a uniform dimension
+            Image::make(public_path("storage/{$path}"))->fit(256, 256)->save();
+
+            $user->profile->image()->create([
+                'path' => "/storage/{$path}",
+            ]);
+        }
+
+        return redirect()->route('profile.show', $user);
     }
 
 }

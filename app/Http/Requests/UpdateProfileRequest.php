@@ -13,7 +13,7 @@ class UpdateProfileRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['bail', 'required', 'string'],
+            'phone_number' => ['bail', 'required', 'numeric'],
+            'nickname' => [],
+            'image' => ['image', 'mimes:png,jpeg,jpg,gif,bmp', 'max:2000']
         ];
     }
 }
