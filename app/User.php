@@ -85,6 +85,11 @@ class User extends Authenticatable
         return is_null($this->working) ? 'No Station' : $this->working->station->name;
     }
 
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
 
     /**
      * Utility methods and helpers

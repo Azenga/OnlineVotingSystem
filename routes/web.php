@@ -70,3 +70,15 @@ Route::group(['namespace' => 'Officer', 'prefix' => 'officer', 'as' => 'officer.
     Route::resource('users', 'UsersController');
     
 });
+
+/*
+|----------------------------------------------------------------------------
+| Authenticate User Routes
+|----------------------------------------------------------------------------
+|
+| Here are the routes that any authenticated user should access
+|
+*/
+Route::get('profiles/{user}', 'ProfilesController@show')->name('profile.show');
+Route::get('profiles/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
+Route::patch('profiles/{user}', 'ProfilesController@update');
