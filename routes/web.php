@@ -20,7 +20,7 @@ Route::view('/', 'welcome')->name('home');
 | Auth Routes
 |----------------------------------------------------------------------------
 |
-| The basic auth routes but without includin the register route
+| The basic auth routes but without including the register route
 |
 */
 Auth::routes(['register' => false]);
@@ -82,3 +82,5 @@ Route::group(['namespace' => 'Officer', 'prefix' => 'officer', 'as' => 'officer.
 Route::get('profiles/{user}', 'ProfilesController@show')->name('profile.show');
 Route::get('profiles/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
 Route::patch('profiles/{user}', 'ProfilesController@update')->name('profile.update');
+
+Route::any('vote', 'VotingController')->name('vote');
