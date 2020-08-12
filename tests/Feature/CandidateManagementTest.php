@@ -9,13 +9,27 @@ use App\Ward;
 use App\Position;
 use Tests\TestCase;
 use App\Candidature;
-use Illuminate\Foundation\Testing\WithFaker;
+use PermissionsTableSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CandidateManagementTest extends TestCase
 {
 
     use RefreshDatabase;
+
+    public function setUp():void
+    {
+        parent::setUp();
+
+        factory(Role::class, 5)->create();
+
+        $this->seed(PermissionsTableSeeder::class);
+
+        $user = factory(User::class)->create(['role_id' => 5]);
+
+        $this->be($user);
+        
+    }
     
     /**
      * @test

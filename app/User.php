@@ -87,7 +87,7 @@ class User extends Authenticatable
 
     public function profile()
     {
-        return $this->hasOne(Profile::class);
+        return $this->hasOne(Profile::class)->withDefault();
     }
 
 
@@ -104,10 +104,14 @@ class User extends Authenticatable
      */
     public function image():string
     {
-        return is_null($this->profile) 
-            ? "img/avatar.jpg"
-            : is_null($this->profile->image)
-                ? "img/avatar.jpg"
-                : $this->profile->image->path;
+        if(is_null($this->profile)){
+            return "img/avatar.jpg";
+        }else{
+            if(is_null($this->profile->image)){
+                return "img/avatar.jpg";
+            }else{
+                return $this->profile->image->path;
+            }
+        }
     }
 }
