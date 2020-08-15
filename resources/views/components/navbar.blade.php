@@ -42,7 +42,7 @@
                                  aria-expanded="false" v-pre>
                                 
                                  <span class="mr-2 text-gray-600">{{ Auth::user()->name }}</span>
-                                 <img height="40" width="40" class="rounded-circle" src="{{ Auth::user()->image() }}" alt="User Profile Pic">
+                                 <img height="40" width="40" class="rounded-circle" src="{{ asset(Auth::user()->image()) }}" alt="User Profile Pic">
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

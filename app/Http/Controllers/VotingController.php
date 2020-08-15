@@ -20,39 +20,79 @@ class VotingController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $candidates = [];
+        dump(session('positions'));
+        dump(session('selections'));
 
         $positions = Position::all(['id', 'title']);
         
         if($request->method() === "GET"){
 
-            $candidatures = $this->getCandidates();
+            $positionId = $request->position;
+
+            if(is_null($positionId))
+                $candidatures = $this->getCandidates();
+            else 
+                $candidatures = $this->getCandidates($positionId);
 
             return view('users.vote', compact('positions', 'candidatures'));
 
         }
 
+        if($request->method() === "POST")
+        {
+            $request->validate([
+                'candidature_id' => ['required', 'numeric']
+            ]);
 
-        
+            $positionId = Candidature::findOrFail($request->candidature_id)->position_id;
 
+            $candidatureId = $request->candidature_id;
+
+            $this->updateVote($positionId, $candidatureId);
+
+            if(
+                (count(session('positions', [])) === $positions->count())
+                && 
+                (count(session('positions', [])) === count(session('selections', [])))
+            ){
+                
+                return redirect()->route('vote.confirm');
+
+            }else{
+
+                $candidatures = $this->getCandidates(++$positionId);
+
+                return view('users.vote', compact('positions', 'candidatures'));
+            }
+        }
 
     }
 
-    private function getCandidates()
+    private function getCandidates(int $positionId = 1)
     {
-        $vote = session()->pull('vote', []);
+        return Candidature::with('user')
+            ->where('position_id', $positionId)
+            ->get();
+    }
+
+    private function updateVote($positionId, $candidatureId)
+    {
+        $positions = session('positions', []);
+        $selections = session('selections', []);
         
-        if(!session()->has('vote'))
+        if(in_array($positionId, $positions))
         {
-            $vote = [
-                'selection' => [],
-                'current_position' => 1,
-            ];
-
-            session()->put('vote', $vote);
-
-            return Candidature::with('user')->where('position_id', 1)->get();
+            $selections[array_search($positionId, $positions, true)] = $candidatureId;
         }
+        
+        else
+        {
+            array_push($positions, $positionId);
+            array_push($selections, $candidatureId);
+        }
+
+        request()->session()->put('positions', $positions);
+        request()->session()->put('selections', $selections);
 
     }
 

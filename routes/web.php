@@ -84,3 +84,5 @@ Route::get('profiles/{user}/edit', 'ProfilesController@edit')->name('profile.edi
 Route::patch('profiles/{user}', 'ProfilesController@update')->name('profile.update');
 
 Route::any('vote', 'VotingController')->name('vote');
+
+Route::any('vote/confirm', 'CastingController')->name('vote.confirm');
