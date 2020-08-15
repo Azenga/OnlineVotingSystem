@@ -16,24 +16,24 @@ use App\Http\Resources\ConstituencyResource;
 class LocationsController extends Controller
 {
     
-    public function index()
+    public function countries()
     {
-        return CountryResource::collection(Country::with('counties.constituencies.wards')->get());
+        return CountryResource::collection(Country::all(['id', 'name']));
     }
 
     public function counties()
     {
-        return CountyResource::collection(County::with('constituencies.wards')->get());
+        return CountyResource::collection(County::all(['id', 'name']));
     }
 
     public function constituencies()
     {
-        return ConstituencyResource::collection(Constituency::with('wards')->get());
+        return ConstituencyResource::collection(Constituency::all(['id', 'name']));
     }
 
     public function wards()
     {
-        return WardResource::collection(Ward::with('users')->orderBy('name')->get());
+        return WardResource::collection(Ward::all(['id', 'name']));
     }
 
     public function wardShow(Ward $ward)

@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Candidature;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -113,5 +115,41 @@ class User extends Authenticatable
                 return $this->profile->image->path;
             }
         }
+    }
+
+    public function getCandidatesAtPosition(int $positionId)
+    {
+        $position = Position::findOrFail($positionId);
+
+        $location_id = 0;
+
+        switch ($position->level_id) {
+
+            case 1:
+                $location_id = $this->ward->constituency->county->country->id;
+                break;
+            case 2:
+                $location_id = $this->ward->constituency->county->id;
+                break;
+            case 3:
+                $location_id = $this->ward->constituency->id;
+                break;
+            case 4:
+                $location_id = $this->ward->id;
+                break;
+            
+            default:
+                return;
+        }
+
+        return Candidature::with('user')
+            ->position($positionId)
+            ->where(function($query){
+                $query->select('location_id')
+                    ->from('users')
+                    ->whereColumn('user_id', 'users.id')
+                    ->take(1);
+            }, $location_id)
+            ->get();
     }
 }

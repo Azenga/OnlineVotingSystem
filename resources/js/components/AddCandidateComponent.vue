@@ -62,21 +62,24 @@
                         id="ward-id" aria-label="Select a position">
                     <option selected disabled>Select Location</option>
                     <optgroup v-if="position == 1">
-                        <option v-for="(location, index) in locations" :value=location.id :key=index>
-                            {{ location.name }}
+                        <option v-for="(country, index) in countries" :value=country.id :key=index>
+                            {{ country.name }}
                         </option>
                     </optgroup>
                     <optgroup v-if="position == 2 || position == 3 || position == 4">
-                        <option v-for="(location, index) in locations[country].counties" 
-                        :value=location.id :key=index>{{ location.name }}</option>
+                        <option v-for="(county, index) in counties" :value=county.id :key=index>
+                            {{ county.name }}
+                        </option>
                     </optgroup>
                     <optgroup v-if="position == 5">
-                        <option v-for="(location, index) in locations[country].counties[county].constituencies" 
-                        :value=location.id :key=index>{{ location.name }}</option>
+                        <option v-for="(constituency, index) in constituencies" :value=constituency.id :key=index>
+                            {{ constituency.name }}
+                        </option>
                     </optgroup>
                     <optgroup v-if="position == 6">
-                        <option v-for="(location, index) in locations[country].counties[county].constituencies[constituency].wards" 
-                        :value=location.id :key=index>{{ location.name }}</option>
+                        <option v-for="(ward, index) in wards" :value=ward.id :key=index>
+                            {{ ward.name }}
+                        </option>
                     </optgroup>
                 </select>
             </div>
@@ -95,19 +98,17 @@
 
             return {
                 position: 0,
-                country: 0,
-                county: 0,
-                constituency: 0,
-                ward: 0,
             }
         },
 
         computed: {
-            ...mapState(['locations', 'wards', 'positions', 'selectedWard'])
+            ...mapState(['countries', 'counties', 'constituencies', 'wards', 'positions'])
         },
 
         beforeMount(){
-            this.$store.dispatch('getLocations'),
+            this.$store.dispatch('getCountries'),
+            this.$store.dispatch('getCounties'),
+            this.$store.dispatch('getConstituencies'),
             this.$store.dispatch('getWards'),
             this.$store.dispatch('getPositions')
         },
@@ -121,21 +122,6 @@
                 this.position = e.target.value
                 console.log(e.target.value)
             },
-
-            async updateSelectedWard(e){
-
-                let wardId = e.target.value
-                
-                let selectedWard = await axios.get(`/api/locations/wards/${wardId}`)
-                
-                selectedWard = selectedWard.data.data
-                console.log(selectedWard)
-
-                this.ward = selectedWard.id
-                this.constituency = selectedWard.constituency.id
-                this.county = selectedWard.constituency.county.id
-                this.country = selectedWard.constituency.county.country.id
-            }
         }
     }
 </script>

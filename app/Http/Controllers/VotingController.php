@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Position;
 use App\Candidature;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VotingController extends Controller
 {
@@ -20,8 +21,8 @@ class VotingController extends Controller
      */
     public function __invoke(Request $request)
     {
-        dump(session('positions'));
-        dump(session('selections'));
+        //dump(session('positions'));
+        //dump(session('selections'));
 
         $positions = Position::all(['id', 'title']);
         
@@ -70,9 +71,19 @@ class VotingController extends Controller
 
     private function getCandidates(int $positionId = 1)
     {
-        return Candidature::with('user')
-            ->where('position_id', $positionId)
+
+        return Auth::user()->getCandidatesAtPosition($positionId);
+        
+        /*return Candidature::with('user')
+            ->position($positionId)
+            ->where(function($query){
+                $query->select('location_id')
+                    ->from('users')
+                    ->whereColumn('user_id', 'users.id')
+                    ->take(1);
+            }, Auth::user()->ward_id)
             ->get();
+            */
     }
 
     private function updateVote($positionId, $candidatureId)

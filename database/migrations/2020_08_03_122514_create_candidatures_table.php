@@ -17,6 +17,7 @@ class CreateCandidaturesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('position_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('location_id');
             $table->string('party')->nullable();
             $table->boolean('incumbent')->default(false);
             $table->unsignedBigInteger('running_mate_id')->nullable();

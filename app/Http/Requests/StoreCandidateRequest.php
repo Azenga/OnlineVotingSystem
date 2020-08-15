@@ -29,7 +29,8 @@ class StoreCandidateRequest extends FormRequest
             'phone_number' => ['bail', 'required', 'numeric'],
             'national_id_number' => ['bail', 'required', 'numeric'],
             'ward_id' => ['bail', 'required', 'numeric'],
-            'position_id' => ['bail', 'required', 'numeric']
+            'position_id' => ['bail', 'required', 'numeric'],
+            'location_id' => ['bail', 'required', 'numeric'],
         ];
     }
 }

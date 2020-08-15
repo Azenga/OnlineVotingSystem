@@ -9,6 +9,7 @@ class Candidature extends Model
     protected $fillable = [
         'user_id',
         'position_id', 
+        'location_id', 
         'running_mate_id', 
         'incumbent', 
         'party'
@@ -30,24 +31,28 @@ class Candidature extends Model
 
     }
 
+    public function scopePosition($query, int $position)
+    {
+        return $query->where('position_id', $position);
+    }
+
     public function where()
     {
         switch ($this->position->level_id) {
             case 1:
-                return $this->user->ward->constituency->county->country->name;
+                return Country::findOrFail($this->location_id)->name;
 
             case 2;
-                return $this->user->ward->constituency->county->name;
+                return County::findOrFail($this->location_id)->name;
 
             case 3;
-                return $this->user->ward->constituency->name;
+                return Constituency::findOrFail($this->location_id)->name;
 
             case 4;
-                return $this->user->ward->name;
+                return Ward::findOrFail($this->location_id)->name;
             
             default:
-                return $this->user->ward->name;
-                break;
+                return null;
         }
     }
 }

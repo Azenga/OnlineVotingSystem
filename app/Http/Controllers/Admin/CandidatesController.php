@@ -65,6 +65,7 @@ class CandidatesController extends Controller
 
         $candidature = Candidature::create([
             'user_id' => $user->id,
+            'location_id' => $request->location_id,
             'position_id' => $request->validated()['position_id']
         ]);
         

@@ -1920,15 +1920,7 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2022,21 +2014,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   'name': 'add-candidate',
   data: function data() {
     return {
-      position: 0,
-      country: 0,
-      county: 0,
-      constituency: 0,
-      ward: 0
+      position: 0
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(['locations', 'wards', 'positions', 'selectedWard'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['countries', 'counties', 'constituencies', 'wards', 'positions'])),
   beforeMount: function beforeMount() {
-    this.$store.dispatch('getLocations'), this.$store.dispatch('getWards'), this.$store.dispatch('getPositions');
+    this.$store.dispatch('getCountries'), this.$store.dispatch('getCounties'), this.$store.dispatch('getConstituencies'), this.$store.dispatch('getWards'), this.$store.dispatch('getPositions');
   },
   mounted: function mounted() {
     console.log('Add Candidate mounted.');
@@ -2045,36 +2036,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updatePosition: function updatePosition(e) {
       this.position = e.target.value;
       console.log(e.target.value);
-    },
-    updateSelectedWard: function updateSelectedWard(e) {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var wardId, selectedWard;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                wardId = e.target.value;
-                _context.next = 3;
-                return axios.get("/api/locations/wards/".concat(wardId));
-
-              case 3:
-                selectedWard = _context.sent;
-                selectedWard = selectedWard.data.data;
-                console.log(selectedWard);
-                _this.ward = selectedWard.id;
-                _this.constituency = selectedWard.constituency.id;
-                _this.county = selectedWard.constituency.county.id;
-                _this.country = selectedWard.constituency.county.country.id;
-
-              case 10:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
     }
   }
 });
@@ -39281,14 +39242,14 @@ var render = function() {
             _vm.position == 1
               ? _c(
                   "optgroup",
-                  _vm._l(_vm.locations, function(location, index) {
+                  _vm._l(_vm.countries, function(country, index) {
                     return _c(
                       "option",
-                      { key: index, domProps: { value: location.id } },
+                      { key: index, domProps: { value: country.id } },
                       [
                         _vm._v(
                           "\n                        " +
-                            _vm._s(location.name) +
+                            _vm._s(country.name) +
                             "\n                    "
                         )
                       ]
@@ -39301,14 +39262,17 @@ var render = function() {
             _vm.position == 2 || _vm.position == 3 || _vm.position == 4
               ? _c(
                   "optgroup",
-                  _vm._l(_vm.locations[_vm.country].counties, function(
-                    location,
-                    index
-                  ) {
+                  _vm._l(_vm.counties, function(county, index) {
                     return _c(
                       "option",
-                      { key: index, domProps: { value: location.id } },
-                      [_vm._v(_vm._s(location.name))]
+                      { key: index, domProps: { value: county.id } },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(county.name) +
+                            "\n                    "
+                        )
+                      ]
                     )
                   }),
                   0
@@ -39318,17 +39282,19 @@ var render = function() {
             _vm.position == 5
               ? _c(
                   "optgroup",
-                  _vm._l(
-                    _vm.locations[_vm.country].counties[_vm.county]
-                      .constituencies,
-                    function(location, index) {
-                      return _c(
-                        "option",
-                        { key: index, domProps: { value: location.id } },
-                        [_vm._v(_vm._s(location.name))]
-                      )
-                    }
-                  ),
+                  _vm._l(_vm.constituencies, function(constituency, index) {
+                    return _c(
+                      "option",
+                      { key: index, domProps: { value: constituency.id } },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(constituency.name) +
+                            "\n                    "
+                        )
+                      ]
+                    )
+                  }),
                   0
                 )
               : _vm._e(),
@@ -39336,17 +39302,19 @@ var render = function() {
             _vm.position == 6
               ? _c(
                   "optgroup",
-                  _vm._l(
-                    _vm.locations[_vm.country].counties[_vm.county]
-                      .constituencies[_vm.constituency].wards,
-                    function(location, index) {
-                      return _c(
-                        "option",
-                        { key: index, domProps: { value: location.id } },
-                        [_vm._v(_vm._s(location.name))]
-                      )
-                    }
-                  ),
+                  _vm._l(_vm.wards, function(ward, index) {
+                    return _c(
+                      "option",
+                      { key: index, domProps: { value: ward.id } },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(ward.name) +
+                            "\n                    "
+                        )
+                      ]
+                    )
+                  }),
                   0
                 )
               : _vm._e()
@@ -53387,12 +53355,14 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
 var debug = "development" === 'production';
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   state: {
-    locations: [],
+    countries: [],
+    counties: [],
+    constituencies: [],
     wards: [],
     positions: []
   },
   actions: {
-    getLocations: function getLocations(_ref) {
+    getCountries: function getCountries(_ref) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var commit;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -53402,11 +53372,11 @@ var debug = "development" === 'production';
                 commit = _ref.commit;
                 _context.t0 = commit;
                 _context.next = 4;
-                return axios.get('/api/locations');
+                return axios.get('/api/locations/countries');
 
               case 4:
                 _context.t1 = _context.sent;
-                return _context.abrupt("return", (0, _context.t0)('setLocations', _context.t1));
+                return _context.abrupt("return", (0, _context.t0)('setCountries', _context.t1));
 
               case 6:
               case "end":
@@ -53416,7 +53386,7 @@ var debug = "development" === 'production';
         }, _callee);
       }))();
     },
-    getWards: function getWards(_ref2) {
+    getCounties: function getCounties(_ref2) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var commit;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
@@ -53426,11 +53396,11 @@ var debug = "development" === 'production';
                 commit = _ref2.commit;
                 _context2.t0 = commit;
                 _context2.next = 4;
-                return axios.get('/api/locations/wards');
+                return axios.get('/api/locations/counties');
 
               case 4:
                 _context2.t1 = _context2.sent;
-                return _context2.abrupt("return", (0, _context2.t0)('setWards', _context2.t1));
+                return _context2.abrupt("return", (0, _context2.t0)('setCounties', _context2.t1));
 
               case 6:
               case "end":
@@ -53440,7 +53410,7 @@ var debug = "development" === 'production';
         }, _callee2);
       }))();
     },
-    getPositions: function getPositions(_ref3) {
+    getConstituencies: function getConstituencies(_ref3) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var commit;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -53450,11 +53420,11 @@ var debug = "development" === 'production';
                 commit = _ref3.commit;
                 _context3.t0 = commit;
                 _context3.next = 4;
-                return axios.get('/api/positions');
+                return axios.get('/api/locations/constituencies');
 
               case 4:
                 _context3.t1 = _context3.sent;
-                return _context3.abrupt("return", (0, _context3.t0)('setPositions', _context3.t1));
+                return _context3.abrupt("return", (0, _context3.t0)('setConstituencies', _context3.t1));
 
               case 6:
               case "end":
@@ -53463,11 +53433,65 @@ var debug = "development" === 'production';
           }
         }, _callee3);
       }))();
+    },
+    getWards: function getWards(_ref4) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var commit;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                commit = _ref4.commit;
+                _context4.t0 = commit;
+                _context4.next = 4;
+                return axios.get('/api/locations/wards');
+
+              case 4:
+                _context4.t1 = _context4.sent;
+                return _context4.abrupt("return", (0, _context4.t0)('setWards', _context4.t1));
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    getPositions: function getPositions(_ref5) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var commit;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                commit = _ref5.commit;
+                _context5.t0 = commit;
+                _context5.next = 4;
+                return axios.get('/api/positions');
+
+              case 4:
+                _context5.t1 = _context5.sent;
+                return _context5.abrupt("return", (0, _context5.t0)('setPositions', _context5.t1));
+
+              case 6:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
     }
   },
   mutations: {
-    setLocations: function setLocations(state, response) {
-      state.locations = response.data.data;
+    setCountries: function setCountries(state, response) {
+      state.countries = response.data.data;
+    },
+    setCounties: function setCounties(state, response) {
+      state.counties = response.data.data;
+    },
+    setConstituencies: function setConstituencies(state, response) {
+      state.constituencies = response.data.data;
     },
     setWards: function setWards(state, response) {
       state.wards = response.data.data;

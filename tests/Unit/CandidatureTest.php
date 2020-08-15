@@ -73,4 +73,16 @@ class CandidatureTest extends TestCase
         $this->assertNull(Candidature::first()->running_mate_id);
     }    
 
+    /**
+     * @test
+     * 
+     * @group candidature
+     */
+    public function location_id_is_required()
+    {
+        $this->expectException(\Exception::class);
+
+        $candidature = factory(Candidature::class)->create(['location_id' => null]);
+    }
+
 }
