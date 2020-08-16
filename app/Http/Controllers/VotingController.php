@@ -6,6 +6,7 @@ use App\Position;
 use App\Candidature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class VotingController extends Controller
 {
@@ -23,6 +24,8 @@ class VotingController extends Controller
     {
         //dump(session('positions'));
         //dump(session('selections'));
+        
+        Gate::authorize('can-vote');
 
         $positions = Position::all(['id', 'title']);
         

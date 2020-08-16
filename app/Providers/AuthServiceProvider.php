@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Vote;
 use App\Permission;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Gate;
@@ -29,7 +30,6 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //Define gates
-
         if(Schema::hasTable('permissions')){
 
             $permissions = Permission::pluck('title')->toArray();
@@ -43,7 +43,6 @@ class AuthServiceProvider extends ServiceProvider
         }
 
         //Extra Gates
-
         Gate::define('view-admin-dashboard', function($user){
             return $user->role_id == 5 
                 ? Response::allow()
@@ -54,6 +53,13 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role_id == 3 
                 ? Response::allow()
                 : Response::deny('You must be an officer');
+        });
+
+        //Voting gate
+        Gate::define('can-vote', function($user){
+            return Vote::where('user_id', $user->id)->get()->count() == 1
+                ? Response::deny('You have already voted')
+                : Response::allow();
         });
 
     }

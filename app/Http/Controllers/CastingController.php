@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Position;
 use App\Candidature;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CastingController extends Controller
 {
@@ -16,6 +17,9 @@ class CastingController extends Controller
      */
     public function __invoke(Request $request)
     {
+        
+        Gate::authorize('can-vote');
+        
         $positions = Position::all(['id', 'title']);
 
         if(count(session('selections', [])) < $positions->count())
