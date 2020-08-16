@@ -74,16 +74,6 @@ class VotingController extends Controller
 
         return Auth::user()->getCandidatesAtPosition($positionId);
         
-        /*return Candidature::with('user')
-            ->position($positionId)
-            ->where(function($query){
-                $query->select('location_id')
-                    ->from('users')
-                    ->whereColumn('user_id', 'users.id')
-                    ->take(1);
-            }, Auth::user()->ward_id)
-            ->get();
-            */
     }
 
     private function updateVote($positionId, $candidatureId)
