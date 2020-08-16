@@ -51,6 +51,18 @@ php artisan serve
 
 * Home
 ![Admin Dashboard](https://github.com/Azenga/OnlineVotingSystem/blob/master/public/img/screenshots/home.png)
+
+* Candidate Profile Page
+![Admin Dashboard](https://github.com/Azenga/OnlineVotingSystem/blob/master/public/img/screenshots/candidate.png)
+
+* Admin Counties Page
+![Admin Dashboard](https://github.com/Azenga/OnlineVotingSystem/blob/master/public/img/screenshots/counties.png)
+
+* Login Page
+![Admin Dashboard](https://github.com/Azenga/OnlineVotingSystem/blob/master/public/img/screenshots/login.png)
+
+* Voting Page
+![Admin Dashboard](https://github.com/Azenga/OnlineVotingSystem/blob/master/public/img/screenshots/vote.png)
  
 ## Author
 
