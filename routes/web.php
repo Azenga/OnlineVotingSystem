@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('home');
 
+Route::resource('candidates', 'CandidatesController')
+    ->only(['index', 'show'])
+    ->parameters(['candidates' => 'candidature']);
+
 /*
 |----------------------------------------------------------------------------
 | Auth Routes

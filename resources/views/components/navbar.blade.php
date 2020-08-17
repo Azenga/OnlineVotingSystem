@@ -19,7 +19,7 @@
                     <li class="nav-item ml-0 ml-md-3"><a href="{{ route('home') }}" class="nav-link">FAQs</a></li>
                     <li class="nav-item ml-0 ml-md-3"><a href="{{ route('home') }}" class="nav-link">Results</a></li>
 
-                    <li class="nav-item ml-0 ml-md-5"><a href="{{ route('home') }}" class="nav-link">Aspirants</a></li>
+                    <li class="nav-item ml-0 ml-md-5"><a href="{{ route('candidates.index') }}" class="nav-link">Aspirants</a></li>
                     @can('can-vote')
                         <li class="nav-item ml-0 ml-md-3"><a href="{{ route('vote') }}" class="nav-link">Cast Vote</a></li>
                     @endcan

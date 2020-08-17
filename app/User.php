@@ -122,6 +122,15 @@ class User extends Authenticatable
         }
     }
 
+    public function nickname():string
+    {
+        if(is_null($this->profile)){
+            return "";
+        }else{
+            return $this->profile->nickname;
+        }
+    }    
+
     public function getCandidatesAtPosition(int $positionId)
     {
         $position = Position::findOrFail($positionId);
