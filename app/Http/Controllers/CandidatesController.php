@@ -52,9 +52,11 @@ class CandidatesController extends Controller
      * @param  \App\Candidature  $candidature
      * @return \Illuminate\Http\Response
      */
-    public function show(Candidature $candidature)
+    public function show(int $candidature)
     {
-        //
+        $candidate = Candidature::with(['user.profile', 'position'])->findOrFail($candidature);
+
+        return view('candidates.show', compact('candidate'));
     }
 
     /**

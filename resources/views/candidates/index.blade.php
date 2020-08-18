@@ -34,7 +34,7 @@
                             <img width="160" class="rounded-left" src="{{ asset($candidate->user->image()) }}" alt="">
                         </div>
                         <div class="p-3">
-                            <div class="text-dark font-weight-bold h5">{{ $candidate->user->name }}</div>
+                            <div class="text-dark font-weight-bold h5"><a href="{{ route('candidates.show', $candidate) }}">{{ $candidate->user->name }}</a></div>
                             <div>{{ $candidate->user->nickname() }}</div>
                             <div class="text-muted">{{ $candidate->position->title }}</div>
                             <div class="text-primary">{{ $candidate->where() }}</div>
