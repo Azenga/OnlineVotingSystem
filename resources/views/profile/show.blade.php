@@ -9,7 +9,7 @@
     <div class="container py-4">
         <div class="row">
             <div class="col-md-3 bg-white p-3 border d-flex flex-column align-items-center">
-                <img class="rounded-circle w-75" src="{{ asset($user->image()) }}" alt="Profile Image">
+                <img class="rounded-circle w-75" src="{{ Storage::disk('s3')->url($user->image()) }}" alt="Profile Image">
 
                 <div class="mt-3">
                     <h4 class="font-weight-bold text-gray-900">{{ $user->name }}</h4>

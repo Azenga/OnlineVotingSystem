@@ -73,14 +73,17 @@ class ProfilesController extends Controller
             }
 
             //Upload the image
-            $path = $request->file('image')->store('uploads/images/profile', 'public');
+            $path = Storage::disk('s3')->put('uploads/images/profile', $request->file('image'));
+
+            
 
             //Resize and crop the image to a uniform dimension
-            Image::make(public_path("storage/{$path}"))->fit(256, 256)->save();
+            //Image::make(public_path("storage/{$path}"))->fit(256, 256)->save();
 
             $user->profile->image()->create([
-                'path' => "/storage/{$path}",
+                'path' => $path,
             ]);
+            
         }
 
         return redirect()->route('profile.show', $user);
