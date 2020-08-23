@@ -18,9 +18,11 @@
             <select multiple class="form-select" aria-describedby="officer-ward"
                 name="users_ids[]" id="user-id" aria-label="Select a position">
                 <option selected disabled>Select Officers</option>
-                <option v-for="user in wards[ward].users" :value=user.id :key=user.id>
-                    {{ user.name }}
-                </option>
+                <optgroup v-if="wards[ward] != undefined">
+                    <option v-for="user in wards[ward].users" :value=user.id :key=user.id>
+                        {{ user.name }}
+                    </option>
+                </optgroup>
 
             </select>
             <small id="officer-ward" class="form-text text-muted">Select the ward first to display the corrent users</small>
@@ -31,6 +33,7 @@
 <script>
 
 import { mapState } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
     name: 'add-station',
@@ -46,12 +49,24 @@ export default {
     },
 
     beforeMount(){
-        this.$store.dispatch('getWards')
+        this.getWards()
     },
 
     methods: {
+        ...mapActions(['getWards']),
+
         updateUsers(e){
-            this.ward = event.target.value
+            
+            this.wards.filter((ward, index) => {
+
+                if(ward.id == e.target.value){
+
+                    this.ward = index
+
+                }
+
+                return false
+            })
         }
     }
 }
