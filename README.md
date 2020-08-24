@@ -63,6 +63,12 @@ php artisan serve
 
 * Voting Page
 ![Admin Dashboard](https://github.com/Azenga/OnlineVotingSystem/blob/master/public/img/screenshots/vote.png)
+
+* Ballot Confirmation Page
+![Admin Dashboard](https://github.com/Azenga/OnlineVotingSystem/blob/master/public/img/screenshots/confirmation.png)
+
+* Results Search Page
+![Admin Dashboard](https://github.com/Azenga/OnlineVotingSystem/blob/master/public/img/screenshots/results-search.png)
  
 ## Author
 
