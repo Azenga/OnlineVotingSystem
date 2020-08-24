@@ -36,6 +36,11 @@ class Candidature extends Model
         return $query->where('position_id', $position);
     }
 
+    public function scopeLocation($query, int $locationId)
+    {
+        return $query->where('location_id', $locationId);
+    }
+
     public function where()
     {
         switch ($this->position->level_id) {

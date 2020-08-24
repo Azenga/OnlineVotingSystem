@@ -15,4 +15,9 @@ class Selection extends Model
     {
         return $this->belongsTo(Vote::class);
     }
+
+    public function candidate()
+    {
+        return $this->belongsTo(Candidature::class, 'candidature_id');
+    }
 }
