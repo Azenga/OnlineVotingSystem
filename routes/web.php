@@ -57,6 +57,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
 
     Route::delete('/roles/{role}/permissions/{permission}', 'RolesPermissionsController@destroy')
         ->name('roles.permissions.destroy');
+
+    Route::get('/results', 'ResultsController')->name('results');
 });
 
 /*
