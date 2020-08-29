@@ -85,10 +85,11 @@ Route::group(['namespace' => 'Officer', 'prefix' => 'officer', 'as' => 'officer.
 | Here are the routes that any authenticated user should access
 |
 */
-Route::get('profiles/{user}', 'ProfilesController@show')->name('profile.show');
-Route::get('profiles/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
-Route::patch('profiles/{user}', 'ProfilesController@update')->name('profile.update');
-
-Route::any('vote', 'VotingController')->name('vote');
-
-Route::any('vote/confirm', 'CastingController')->name('vote.confirm');
+Route::middleware('auth')->group(function(){
+    Route::get('profiles/{user}', 'ProfilesController@show')->name('profile.show');
+    Route::get('profiles/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
+    Route::patch('profiles/{user}', 'ProfilesController@update')->name('profile.update');
+    Route::any('vote', 'VotingController')->name('vote');
+    
+    Route::any('vote/confirm', 'CastingController')->name('vote.confirm');
+});

@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 <img src="{{ asset('img/svgs/logo.svg') }}" height="40" alt="IEBC Logo">
@@ -10,19 +10,17 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mx-auto">
 
                     <!-- Some are here just for testing -->
-                    <li class="nav-item ml-0 ml-md-5"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-                    <li class="nav-item ml-0 ml-md-3"><a href="{{ route('home') }}" class="nav-link">About</a></li>
-                    <li class="nav-item ml-0 ml-md-3"><a href="{{ route('home') }}" class="nav-link">Contact</a></li>
+                    <li class="nav-item ml-0 ml-md-3"><a href="{{ route('candidates.index') }}" class="nav-link">Aspirants</a></li>
                     <li class="nav-item ml-0 ml-md-3"><a href="{{ route('home') }}" class="nav-link">FAQs</a></li>
-                    <li class="nav-item ml-0 ml-md-3"><a href="{{ route('home') }}" class="nav-link">Results</a></li>
-
-                    <li class="nav-item ml-0 ml-md-5"><a href="{{ route('candidates.index') }}" class="nav-link">Aspirants</a></li>
+                    
                     @can('can-vote')
-                        <li class="nav-item ml-0 ml-md-3"><a href="{{ route('vote') }}" class="nav-link">Cast Vote</a></li>
+                    <li class="nav-item ml-0 ml-md-3"><a href="{{ route('vote') }}" class="nav-link">Cast Vote</a></li>
                     @endcan
+                    
+                    <li class="nav-item ml-0 ml-md-3"><a href="{{ route('home') }}" class="nav-link">Results</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -30,7 +28,7 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link btn btn-outline-primary px-5" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">

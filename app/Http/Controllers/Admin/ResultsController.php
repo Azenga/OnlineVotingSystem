@@ -34,7 +34,7 @@ class ResultsController extends Controller
         if(!is_null($positionId) &&  !is_null($locationId)){
 
             $results = Selection::with('candidate.user')
-                ->selectRaw('COUNT(id) as votes, candidature_id')
+                ->selectRaw('COUNT(selections.id) as votes, candidature_id')
                 ->where('position_id', $positionId)
                 ->where('location_id', $locationId)
                 ->groupBy('candidature_id')
