@@ -4,8 +4,16 @@
 <x-navbar />
 @endsection
 
+@section('styles')
+<style>
+    .top-75{
+        margin: 75px;
+    }
+</style>
+@endsection
+
 @section('content')
-<div class="container">
+<div class="top-75">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

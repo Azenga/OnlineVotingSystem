@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome')->name('home');
+Route::view('/', 'home')->name('home');
+Route::view('/faqs', 'faqs')->name('faqs');
 
 Route::resource('candidates', 'CandidatesController')
     ->only(['index', 'show'])
