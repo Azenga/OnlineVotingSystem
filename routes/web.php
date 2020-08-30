@@ -20,7 +20,20 @@ Route::resource('candidates', 'CandidatesController')
     ->only(['index', 'show'])
     ->parameters(['candidates' => 'candidature']);
 
-Route::get('/results', 'ResultsController')->name('results');
+Route::get('/results', 'ResultsController')
+    ->name('results')
+    ->middleware('auth');
+
+/*
+|----------------------------------------------------------------------------
+| Two factor authentication Routes
+|----------------------------------------------------------------------------
+|
+| The basic auth routes but without including the register route
+|
+*/
+Route::view('/verification', 'tufa.auth')->name('verification');
+Route::post('/verification', 'TufaController')->name('verification.code');
 
 /*
 |----------------------------------------------------------------------------
@@ -40,7 +53,7 @@ Auth::routes(['register' => false]);
 | Here are the routes for both the admin and the super admin
 |
 */
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function(){
+Route::group(['middleware' => ['auth', 'tufa'], 'namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], function(){
 
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
@@ -88,7 +101,7 @@ Route::group(['namespace' => 'Officer', 'prefix' => 'officer', 'as' => 'officer.
 | Here are the routes that any authenticated user should access
 |
 */
-Route::middleware('auth')->group(function(){
+Route::middleware(['auth', 'tufa'])->group(function(){
     Route::get('profiles/{user}', 'ProfilesController@show')->name('profile.show');
     Route::get('profiles/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
     Route::patch('profiles/{user}', 'ProfilesController@update')->name('profile.update');
