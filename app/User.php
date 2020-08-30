@@ -166,4 +166,38 @@ class User extends Authenticatable
             }, $location_id)
             ->get();
     }
+
+
+    public function getCandidatesWithVotesAtPosition(int $positionId)
+    {
+        $position = Position::findOrFail($positionId);
+
+        $location_id = 0;
+
+        switch ($position->level_id) {
+
+            case 1:
+                $location_id = $this->ward->constituency->county->country->id;
+                break;
+            case 2:
+                $location_id = $this->ward->constituency->county->id;
+                break;
+            case 3:
+                $location_id = $this->ward->constituency->id;
+                break;
+            case 4:
+                $location_id = $this->ward->id;
+                break;
+            
+            default:
+                return;
+        }
+
+        return Selection::with('candidate.user')
+            ->selectRaw('COUNT(selections.id) as votes, candidature_id')
+            ->where('position_id', $positionId)
+            ->where('location_id', $location_id)
+            ->groupBy('candidature_id')
+            ->get();
+    }    
 }

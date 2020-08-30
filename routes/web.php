@@ -19,6 +19,8 @@ Route::resource('candidates', 'CandidatesController')
     ->only(['index', 'show'])
     ->parameters(['candidates' => 'candidature']);
 
+Route::get('/results', 'ResultsController')->name('results');
+
 /*
 |----------------------------------------------------------------------------
 | Auth Routes

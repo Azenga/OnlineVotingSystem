@@ -20,7 +20,9 @@
                     <li class="nav-item ml-0 ml-md-3"><a href="{{ route('vote') }}" class="nav-link">Cast Vote</a></li>
                     @endcan
                     
-                    <li class="nav-item ml-0 ml-md-3"><a href="{{ route('home') }}" class="nav-link">Results</a></li>
+                    @auth
+                        <li class="nav-item ml-0 ml-md-3"><a href="{{ route('results') }}" class="nav-link">Results</a></li>
+                    @endauth
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -53,13 +55,13 @@
                                 @can('view-admin-dashboard')
                                 <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
                                     <i class="fas fa-tachometer-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    <span>Admin Dashboard</span>
+                                    <span>Dashboard</span>
                                 </a>
                                 @endcan
                                 @can('view-officer-dashboard', Model::class)
                                 <a class="dropdown-item" href="{{ route('officer.dashboard') }}">
                                     <i class="fas fa-tachometer-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    <span>Officer Dashboard</span>
+                                    <span>Dashboard</span>
                                 </a>
                                 @endcan
                                 <a class="dropdown-item" href="#" role="button" data-toggle="modal" data-target="#logoutModal">

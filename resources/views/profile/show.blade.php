@@ -4,9 +4,17 @@
     <x-navbar />
 @endsection
 
+@section('styles')
+<style>
+    .top-75{
+        margin: 75px;
+    }
+</style>
+@endsection
+
 @section('content')
 
-    <div class="container py-4">
+    <div class="container py-4 top-75">
         <div class="row">
             <div class="col-md-3 bg-white p-3 border d-flex flex-column align-items-center">
                 <img class="rounded-circle w-75" src="{{ Storage::disk('s3')->url($user->image()) }}" alt="Profile Image">

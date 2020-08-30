@@ -60,4 +60,17 @@ class Candidature extends Model
                 return null;
         }
     }
+
+    public function getColor(): string
+    {
+        switch ($this->position_id) {
+            case 1: return 'bg-success text-white';
+            case 2: return 'bg-primary text-white';
+            case 3: return 'bg-info text-dark';
+            case 4: return 'bg-warning text-dark';
+            case 5: return 'bg-danger text-white';
+            
+            default: return 'bg-light text-dark';
+        }
+    }
 }
