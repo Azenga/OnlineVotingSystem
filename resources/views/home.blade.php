@@ -6,29 +6,32 @@
 
 @section('styles')
 <style>
-    .top-75{
-        margin: 75px;
+    
+    .h-screen{
+        height: 100vh;
     }
+    .w-screen{
+        width: 100vw;
+    }
+
 </style>
 @endsection
 
 @section('content')
-<div class="top-75">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+<div>
+    <div class="h-screen w-screen d-flex align-items-center px-5">
+        <div class="d-flex flex-column align-items-start">
+            <h1 class="font-weight-bold">
+                <span>Welcome Fellow Citizens, Register, Vote and Track Results Progress.</span>
+                <br>
+                <span class="text-primary">All In One Place</span>
+            </h1>
 
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
+            <a href="{{ route('login') }}" class="btn btn-lg btn-primary mt-5">Get Started</a>
+        </div>
+        <div>
+            <img class="w-100" src="{{ asset('/img/svgs/voting.svg') }}" alt="Voting SVG">
         </div>
     </div>
 </div>
