@@ -4,8 +4,18 @@
     <x-navbar />
 @endsection
 
+@section('styles')
+
+<style>
+    .top-75{
+        margin-top: 75px;
+    }
+</style>
+    
+@endsection
+
 @section('content')
-<div class="container py-4">
+<div class="container py-4 top-75">
     <ul class="nav nav-tabs">
         <li class="nav-item" role="presentation">
             <a href="#user-details" aria-controls="user-details" class="nav-link active" role="tab"

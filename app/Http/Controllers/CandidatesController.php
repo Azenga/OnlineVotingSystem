@@ -14,36 +14,36 @@ class CandidatesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        //dd($request->all());
+
+        //Get request positions or an empty array
+        $positionsIds = is_null($request->positions) ? [] : $request->positions;
+
+        //Get request levels or an empty array
+        $levelsIds = is_null($request->levels) ? [] : $request->levels;
+
+        //Get positions ids based on the levels
+        $levelPositions = Position::whereIn('level_id', $levelsIds)->pluck('id')->toArray();
+
+        //Merge level positions with the select positions
+        $positionsIds = array_merge($positionsIds, $levelPositions);
+
         $positions= Position::all(['id', 'title']);
 
         $levels= Level::all(['id', 'title']);
+
+        $query = Candidature::query();
         
-        $candidates = Candidature::with(['user.profile', 'position'])->get();
+        //Filter candidates by positions if passed
+        if(!is_null($positionsIds) && count($positionsIds))
+            $query->whereIn('position_id', $positionsIds);
+
+        $candidates = $query->with(['user.profile', 'position'])->get();
         
         return view('candidates.index', compact('candidates', 'positions', 'levels'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -59,37 +59,4 @@ class CandidatesController extends Controller
         return view('candidates.show', compact('candidate'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Candidature  $candidature
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Candidature $candidature)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Candidature  $candidature
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Candidature $candidature)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Candidature  $candidature
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Candidature $candidature)
-    {
-        //
-    }
 }

@@ -19,14 +19,9 @@
 @endsection
 
 @section('content')
-<div class="">
+<div class="container">
     <div class="py-5">
-        <div class="row justify-content-around">
-            <div class="col-md-3"></div>
-            <div class="col-md-8">
-                <h3 class="font-weight-bold">Aspirant</h3>
-            </div>
-        </div>
+        
         <div class="row justify-content-around">
             <div class="col-md-3 p-3">
                 <div class="sidebar-sticky">
@@ -39,14 +34,14 @@
                                         <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
                                     </svg>
                                 </div>
-                                <input type="text" class="form-control pl-5" name="" id="" placeholder="Aspirant Name...">
+                                <input type="text" class="form-control pl-5" name="name" id="" placeholder="Aspirant Name...">
                             </div>
                         </div>
     
                         <div class="bg-white p-3 mt-3 rounded">
                             @foreach ($positions as $position)
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="position{{ $position->id }}">
+                                <input class="form-check-input" name="positions[]" type="checkbox" value="{{ $position->id }}" id="position{{ $position->id }}">
                                 <label class="form-check-label" for="position{{ $position->id }}">{{ $position->title }}</label>
                             </div>
                             @endforeach
@@ -55,7 +50,7 @@
                         <div class="bg-white p-3 mt-3 rounded">
                             @foreach ($levels as $level)
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="level{{ $level->id }}">
+                                <input class="form-check-input" name="levels[]" type="checkbox" value="{{ $level->id }}" id="level{{ $level->id }}">
                                 <label class="form-check-label" for="level{{ $level->id }}">{{ $level->title }}</label>
                             </div>
                             @endforeach
