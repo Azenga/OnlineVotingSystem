@@ -23,8 +23,8 @@ class TufaController extends Controller
 
         if($data['code'] == $request->user()->code){
 
-            if($request->user()->code_expiry->addMinutes(5) < now())
-                throw ValidationException::withExceptions(['code' => 'Code expired']);
+            if($request->user()->code_expiry->addMinutes(5) > now())
+                throw ValidationException::withMessages(['code' => 'Code expired']);
                 
             $request->user()->update([
                 'code_expiry' => Carbon::now()->addMinutes(10)

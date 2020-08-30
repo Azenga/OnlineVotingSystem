@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Notifications\Messages\MailMessage;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::view('/', 'home')->name('home');
 Route::view('/faqs', 'faqs')->name('faqs');
 
@@ -85,7 +85,7 @@ Route::group(['middleware' => ['auth', 'tufa'], 'namespace' => 'Admin', 'prefix'
 | Here are the routes for officers / sub-admins / clerks and what have you
 |
 */
-Route::group(['namespace' => 'Officer', 'prefix' => 'officer', 'as' => 'officer.'], function(){
+Route::group(['middleware' => ['auth', 'tufa'], 'namespace' => 'Officer', 'prefix' => 'officer', 'as' => 'officer.'], function(){
 
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Carbon\Carbon;
+use App\Notifications\VerifyAccount;
 
 class TufaVerify
 {
@@ -25,7 +26,9 @@ class TufaVerify
             'code' => mt_rand(10000, 99999)
         ]);
 
-        //Send the email here
+        //Send the notification
+        $request->user()->notify(new VerifyAccount($request->user()));
+        
         return redirect()->route('verification');
 
     }
