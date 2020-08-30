@@ -39,7 +39,7 @@
                                 <tr>
                                     <td>{{ $candidature->position->id }}</td>
                                     <td>{{ $candidature->position->title }}</td>
-                                    <td><img width="64" class="rounded-circle" src="{{ asset($candidature->user->image()) }}" alt="Candidate Image" /></td>
+                                    <td><img width="64" class="rounded-circle" src="{{ Storage::disk('s3')->url($candidature->user->image()) }}" alt="Candidate Image" /></td>
                                     <td>{{ $candidature->user->name }}</td>
                                     <td>                                
                                         <a href="{{ route('vote', ['position' => $candidature->position->id]) }}" class="btn btn-sm btn-info btn-edit-level">

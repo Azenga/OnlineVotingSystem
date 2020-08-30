@@ -14,7 +14,7 @@
 
 @section('content')
 <div class="container top-75">
-    <h4 class="font-weight-bold">Voting Results</h4>
+    <h4 class="font-weight-bold pt-3">Voting Results</h4>
 
 
     @if($results->count())
