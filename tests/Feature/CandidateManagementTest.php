@@ -11,6 +11,7 @@ use Tests\TestCase;
 use App\Candidature;
 use PermissionsTableSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use RolesTableSeeder;
 
 class CandidateManagementTest extends TestCase
 {
@@ -21,8 +22,9 @@ class CandidateManagementTest extends TestCase
     {
         parent::setUp();
 
-        factory(Role::class, 5)->create();
+        // factory(Role::class, 5)->create();
 
+        $this->seed(RolesTableSeeder::class);
         $this->seed(PermissionsTableSeeder::class);
 
         $user = factory(User::class)->create(['role_id' => 5]);
@@ -38,8 +40,6 @@ class CandidateManagementTest extends TestCase
     public function admin_can_view_candidates()
     {
         $this->withoutExceptionHandling();
-
-        factory(Role::class, 5)->create();
 
         $this->get('/admin/candidates')
              ->assertOk()
@@ -109,10 +109,6 @@ class CandidateManagementTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        factory(Role::class)->create();
-
-        factory(Role::class)->create();
-
         $this->post('/admin/candidates', array_merge(
             factory(User::class)->make()->toArray(),
             ['position_id' => $position_id = factory(Position::class)->create()->id]
@@ -133,10 +129,6 @@ class CandidateManagementTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        factory(Role::class)->create();
-
-        factory(Role::class)->create();
-
         $this->post('/admin/candidates', array_merge(
             factory(User::class)->make()->toArray(),
             ['position_id' => $position_id = factory(Position::class)->create()->id]
@@ -155,10 +147,6 @@ class CandidateManagementTest extends TestCase
     public function admin_can_update_candidate_details()
     {
         $this->withoutExceptionHandling();
-
-        factory(Role::class)->create();
-
-        factory(Role::class)->create();
 
 
         $this->post('/admin/candidates', array_merge(
@@ -195,11 +183,6 @@ class CandidateManagementTest extends TestCase
     {        
         $this->withoutExceptionHandling();
         
-        factory(Role::class)->create();
-
-        factory(Role::class)->create();
-
-
         $this->post('/admin/candidates', array_merge(
             factory(User::class)->make()->toArray(),
             ['position_id' => $position_id = factory(Position::class)->create()->id]

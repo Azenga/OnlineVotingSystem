@@ -21,8 +21,8 @@ class UsersTableSeeder extends Seeder
         }
         
         factory(User::class)->create([
-            'name' => 'Azenga Kevin',
-            'email' => 'azenga.kevin7@gmail.com',
+            'name' => 'Super Administrator',
+            'email' => 'admin@gmail.com',
             'role_id' => 5,
             'ward_id' => rand(1, 150),
         ]);
