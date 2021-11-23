@@ -101,7 +101,8 @@ Route::group(['middleware' => ['auth', 'tufa'], 'namespace' => 'Officer', 'prefi
 | Here are the routes that any authenticated user should access
 |
 */
-Route::middleware(['auth', 'tufa'])->group(function(){
+// Route::middleware(['auth', 'tufa'])->group(function(){
+Route::middleware(['auth'])->group(function(){
     Route::get('profiles/{user}', 'ProfilesController@show')->name('profile.show');
     Route::get('profiles/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
     Route::patch('profiles/{user}', 'ProfilesController@update')->name('profile.update');

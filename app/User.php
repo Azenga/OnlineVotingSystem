@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -113,12 +114,12 @@ class User extends Authenticatable
     public function image():string
     {
         if(is_null($this->profile)){
-            return "img/avatar.jpg";
+            return asset("img/avatar.jpg");
         }else{
             if(is_null($this->profile->image)){
-                return "img/avatar.jpg";
+                return asset("img/avatar.jpg");
             }else{
-                return $this->profile->image->path;
+                return Storage::disk('public')->url($this->profile->image->path);
             }
         }
     }

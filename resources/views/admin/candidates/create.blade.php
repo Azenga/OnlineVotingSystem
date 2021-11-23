@@ -12,6 +12,16 @@
 <form action="{{ route('admin.candidates.store') }}" method="post">
     @csrf
 
+    @if ($errors->any())
+    <div class="alert alert-danger list-unstyled">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     <div>
         <add-candidate />
     </div>
