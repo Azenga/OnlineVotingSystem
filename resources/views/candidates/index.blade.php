@@ -66,7 +66,7 @@
                 @foreach ($candidates as $candidate)
                     <div class="bg-white rounded d-flex mt-3 justify-content-between align-items-center">
                         <div class="">
-                            <img width="160" class="rounded-left" src="{{ Storage::disk('s3')->url($candidate->user->image()) }}" alt="Candidate Image">
+                            <img width="160" class="rounded-left" src="{{ $candidate->user->image() }}" alt="Candidate Image">
                         </div>
                         <div class="p-3">
                             <div class="text-dark font-weight-bold h5"><a href="{{ route('candidates.show', $candidate) }}">{{ $candidate->user->name }}</a></div>

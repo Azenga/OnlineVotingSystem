@@ -38,7 +38,7 @@
                     @foreach ($candidatures as $candidature)
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="{{ Storage::disk('s3')->url($candidature->user->image()) }}" alt="User Profile Image">
+                            <img class="card-img-top" src="{{ $candidature->user->image() }}" alt="User Profile Image">
 
                             <div class="card-body">
                                 <div class="form-check mt-3">
