@@ -6,7 +6,7 @@
   </a>
 </p>
 
-> An online voting system for my country
+> An online voting system for Kenya (PHP 7.4)
 <p>
 Just another skill oriented project of mine, I want do it to my best  
 </p>
